@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f8f7f1">
+  <meta name="description" content="How to use The Elements of Surprise: read the map, find a starting point and apply creative moves to your work.">
+  <title>About — The Elements of Surprise</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;550;600;650;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+
+    :root{color-scheme:light;--paper:#f8f7f1;--ink:#242622;--muted:#6a6c62;--hairline:#d9dad0;--sans:'DM Sans',Arial,sans-serif;--serif:'Instrument Serif',Georgia,'Times New Roman',serif}
+    *,*::before,*::after{box-sizing:border-box}
+    html{min-height:100%;background:var(--paper)}
+    body{margin:0;min-height:100vh;color:var(--ink);font:400 15px/1.5 var(--sans);background:radial-gradient(ellipse 65% 230px at 88% 0%,#f6dff0aa,transparent),radial-gradient(ellipse 58% 280px at 8% 0%,#f5edbca3,transparent),var(--paper);-webkit-font-smoothing:antialiased}
+    body::before{content:'';position:absolute;inset:0 0 auto;height:330px;pointer-events:none;opacity:.33;background-image:radial-gradient(#a5a293 .8px,transparent .9px);background-size:23px 23px;mask-image:linear-gradient(#000,transparent)}
+    button,a{-webkit-tap-highlight-color:transparent}
+    button{font:inherit;color:inherit;cursor:pointer}
+    button:focus-visible,a:focus-visible{outline:2px solid var(--ink);outline-offset:5px}
+    button:disabled{cursor:default}
+    .skip{position:absolute;top:-100px;left:24px;z-index:10;padding:12px;background:var(--paper);color:var(--ink)}
+    .skip:focus{top:10px}
+    .page{position:relative;width:min(100%,1512px);margin:0 auto;padding:32px clamp(18px,4.2vw,64px) 36px}
+    .masthead{display:flex;justify-content:space-between;align-items:center;margin-bottom:32px;gap:18px}
+    .wordmark{font-size:19px;font-weight:700;line-height:.89;letter-spacing:-1px}
+    .wordmark span{display:block}
+    .edition{font-size:10px;letter-spacing:1.8px;text-transform:uppercase;color:var(--muted);text-align:right}
+    .edition::before{content:'';display:inline-block;width:5px;height:5px;border-radius:50%;background:#7e8e6c;margin-right:10px;vertical-align:2px}
+    .intro{display:flex;align-items:flex-end;justify-content:space-between;gap:28px;margin-bottom:26px}
+    h1{font:400 clamp(38px,4.55vw,69px)/.98 var(--serif);letter-spacing:-1.6px;margin:0;max-width:1030px}
+    h1 em{font-weight:400}
+    .intro-note{font-size:12px;line-height:1.6;color:var(--muted);max-width:150px;flex:0 0 150px;padding-bottom:3px}
+
+    .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+    .masthead{justify-content:flex-end;gap:10px}
+    .page-link{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:46px;padding:11px 19px;border:1px solid #24262235;border-radius:24px;background:#ffffff60;color:var(--ink);font-size:12px;font-weight:500;line-height:1.4;text-decoration:none;transition:background .18s,transform .18s}
+    .page-link:hover{background:#fff;transform:translateY(-2px)}
+    .intro{display:block;margin-bottom:25px}
+    .intro-description{max-width:650px;margin:12px 0 0;font-size:14px;line-height:1.65;color:var(--muted);text-wrap:pretty}
+    .intro-credits{display:flex;align-items:baseline;flex-wrap:wrap;gap:0 4px;margin:6px 0 0;font-size:12px;line-height:1.6;color:var(--muted)}
+    .intro-credits strong{font-weight:550;color:var(--ink)}
+    .intro-credits a{color:inherit;text-decoration:none}
+    .intro-credits a:hover{color:var(--muted)}
+    .credit-divider{color:#a8aa9d}
+    .page-footer{position:relative;width:min(100%,1512px);margin:0 auto;padding:0 clamp(18px,4.2vw,64px) 25px}
+    .footer-inner{display:flex;align-items:center;justify-content:space-between;gap:12px;border-top:1px solid var(--hairline);padding-top:17px;color:var(--muted);font-size:11px;line-height:1.5}
+    .footer-inner p{margin:0}
+    .footer-inner a{display:inline-flex;align-items:center;min-height:44px;color:inherit;text-decoration:none;text-underline-offset:4px}
+    .footer-inner a:hover{text-decoration:underline}
+    #top{scroll-margin-top:20px}
+    @media(max-width:700px){
+      .masthead{margin-bottom:27px;gap:8px}
+      .page-link{min-height:44px;font-size:11px;padding:10px 16px}
+      .intro-description{font-size:13px;line-height:1.65;margin-top:11px;max-width:38em}
+      .intro-credits{font-size:11px;gap:0 4px;margin-top:5px}
+      .page-footer{padding-bottom:max(18px,env(safe-area-inset-bottom))}
+      .footer-inner{font-size:10px;align-items:center;padding-top:10px}
+    }
+    @media print{.page-footer{padding-top:10px}.footer-inner a{display:none}.intro-description{font-size:11px}.intro-credits{font-size:10px}}
+    .about-page{max-width:1200px}
+    .about-intro{margin:8px 0 56px}
+    .about-eyebrow{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin:0 0 16px}
+    .about-intro h1{font-size:clamp(42px,5.4vw,72px);max-width:800px;line-height:1.02}
+    .about-intro .intro-description{max-width:560px}
+    .about-layout{display:grid;grid-template-columns:190px minmax(0,670px);gap:clamp(32px,5vw,76px);align-items:start}
+    .about-contents{position:sticky;top:25px;display:flex;flex-direction:column;gap:1px;border-top:1px solid var(--hairline);padding-top:13px}
+    .about-contents>span{font-size:9px;letter-spacing:1.3px;text-transform:uppercase;color:var(--muted);margin:0 0 12px}
+    .about-contents a{display:flex;align-items:center;min-height:44px;font-size:12px;line-height:1.5;color:var(--muted);text-decoration:none;text-underline-offset:4px}
+    .about-contents a:hover{color:var(--ink);text-decoration:underline}
+    .about-copy{min-width:0}
+    .about-copy section{border-top:1px solid var(--hairline);padding:25px 0 36px;scroll-margin-top:25px}
+    .section-number{font-size:9px!important;letter-spacing:1.4px;text-transform:uppercase;margin:0 0 14px!important;color:var(--muted)}
+    .about-copy h2{font:400 clamp(28px,3vw,38px)/1.1 var(--serif);letter-spacing:-.5px;margin:0 0 20px}
+    .about-copy p,.about-copy li,.about-copy dd{font-size:14px;line-height:1.85;color:#53574d}
+    .about-copy p{margin:0 0 16px}.about-copy p:last-child{margin-bottom:0}
+    .about-copy strong,.about-copy dt{font-weight:550;color:var(--ink)}
+    .layer-list{display:grid;grid-template-columns:1fr 1fr;gap:19px 26px;margin:22px 0 27px}
+    .layer-list div{padding-left:13px;border-left:2px solid #c4cdb6}
+    .about-copy dt{font-size:13px;margin-bottom:3px}
+    .about-copy dd{margin:0;font-size:12px;line-height:1.7}
+    .reading-example{background:#e8ecdf80;border:1px solid #d9dfcd;border-radius:10px;padding:20px 22px;margin:26px 0}
+    .reading-example>span{display:block;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+    .reading-example p{font-size:13px;line-height:1.7;margin-bottom:9px}
+    .route-list{margin:23px 0}
+    .route-list div{padding:0 0 15px;margin-bottom:15px;border-bottom:1px solid #e3e4d9}
+    .route-list div:last-child{padding-bottom:0;margin-bottom:0;border-bottom:0}
+    .route-list dd{font-size:13px}
+    .use-steps{padding-left:21px;margin:0 0 22px}
+    .use-steps li{padding-left:5px;margin-bottom:13px}
+    .use-steps li::marker{color:#777e6d;font-size:11px}
+    .inline-link{color:var(--ink);text-decoration-color:#b4b7aa;text-underline-offset:4px}
+    .inline-link:hover{text-decoration-color:var(--ink)}
+    .about-return{padding:0 0 15px}.about-return .page-link{background:var(--ink);color:var(--paper);border-color:var(--ink);min-height:48px;padding-left:23px;padding-right:23px}
+    .about-footer{max-width:1200px}
+    @media(max-width:800px){.about-layout{grid-template-columns:1fr;gap:30px}.about-contents{position:static;display:flex;flex-direction:row;flex-wrap:wrap;gap:0 20px;padding:13px 0 0}.about-contents>span{width:100%;margin-bottom:4px}.about-contents a{font-size:11px}.about-intro{margin-bottom:35px}}
+    @media(max-width:500px){.about-intro h1{font-size:44px}.about-copy h2{font-size:31px}.about-copy p,.about-copy li{font-size:13px;line-height:1.8}.about-copy section{padding-top:22px;padding-bottom:30px}.layer-list{gap:17px 16px}.layer-list div{padding-left:10px}.about-copy dd{font-size:12px}.reading-example{padding:17px}.reading-example p{font-size:12px}.about-contents{gap:0 16px}}
+    @media(max-width:350px){.about-intro h1{font-size:39px}.layer-list{grid-template-columns:1fr}}
+    @media print{.about-contents,.about-return{display:none}.about-layout{display:block}.about-copy section{break-inside:avoid}.about-intro h1{font-size:40px}}
+
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+  </style>
+</head>
+<body>
+  <a class="skip" href="#about-content">Skip to the explanation</a>
+  <main class="page about-page" id="top">
+    <nav class="masthead" aria-label="Page navigation"><a class="page-link" href="index.html"><span aria-hidden="true">←</span> Back to the table</a></nav>
+    <header class="about-intro">
+      <p class="about-eyebrow">About the Elements of Surprise</p>
+      <h1>A practical map of<br><em>creative thinking.</em></h1>
+      <p class="intro-description">How to read the table, find a starting point and turn a creative move into an idea.</p>
+      <p class="intro-credits"><strong>a part of Something Clever</strong> <strong>by <a href="https://www.instagram.com/thatowais/" target="_blank" rel="noopener noreferrer">Owais Awan</a></strong></p>
+    </header>
+    <div class="about-layout" id="about-content">
+      <nav class="about-contents" aria-label="On this page">
+        <span>On this page</span>
+        <a href="#the-map">The map</a>
+        <a href="#read-it">How to read it</a>
+        <a href="#find-a-start">Find a starting point</a>
+        <a href="#use-a-move">Use a move</a>
+        <a href="#the-thinking">The thinking behind it</a>
+      </nav>
+      <article class="about-copy">
+        <section id="the-map">
+          <p class="section-number">01 / The map</p>
+          <h2>Trust the process. First, have one.</h2>
+          <p>Creative thinking becomes easier to practise when we can see the moves behind it. <strong>The Elements of Surprise</strong> makes those moves visible, giving people across disciplines more ways to approach a problem, develop an idea and get beyond their first answer.</p>
+          <p>a part of <strong>Something Clever</strong>, it brings 60 creative moves into one practical atlas, a place to start when you need a different way forward.</p>
+        </section>
+        <section id="read-it">
+          <p class="section-number">02 / How to read it</p>
+          <h2>A move, applied at a layer.</h2>
+          <p><strong>Columns describe the operation:</strong> combine, map, add, remove, swap, divide, reorder, scale, invert or loop.</p>
+          <p><strong>Rows describe where you apply it:</strong></p>
+          <dl class="layer-list">
+            <div><dt>Surface</dt><dd>The material, appearance or sensory qualities.</dd></div>
+            <div><dt>Context</dt><dd>Where, when and how people encounter it.</dd></div>
+            <div><dt>Structure</dt><dd>How its parts fit and work together.</dd></div>
+            <div><dt>Frame</dt><dd>The perspective or meaning attached to it.</dd></div>
+            <div><dt>Rules</dt><dd>The constraints and conventions it operates within.</dd></div>
+            <div><dt>Purpose</dt><dd>The job it does and what it is trying to achieve.</dd></div>
+          </dl>
+          <div class="reading-example"><span>One operation. Two different moves.</span><p><strong>Remove + Surface = Strip.</strong> Remove detail so one element carries the message.</p><p><strong>Remove + Rules = Break a rule.</strong> Remove a convention to make room for a different approach.</p></div>
+          <p>The columns sit in three navigation groups: <strong>Connect</strong> brings ideas together or carries them between fields; <strong>Edit</strong> changes the parts; <strong>Reshape</strong> changes order, scale, direction or repetition.</p>
+          <p>Hover over a cell for a short description, or select it to read the full explanation and five real examples. On mobile, tap a cell to open it.</p>
+        </section>
+        <section id="find-a-start">
+          <p class="section-number">03 / Find a starting point</p>
+          <h2>Start with what you need.</h2>
+          <p>Browse freely, or open the filter button at the top right. Choose the situation closest to yours:</p>
+          <dl class="route-list">
+            <div><dt>Work on a brief</dt><dd>Choose what needs to happen: get noticed, make something clear, make it matter, build belief, encourage action or create more value.</dd></div>
+            <div><dt>Get unstuck</dt><dd>Choose the obstacle, whether the idea feels generic, too complicated, irrelevant or difficult to demonstrate.</dd></div>
+            <div><dt>Explore</dt><dd>Get six varied moves from across the map. “Another six” gives you a different set.</dd></div>
+          </dl>
+          <p>You can add one optional refinement, then apply your focus. Six suggested moves stay highlighted; the rest remain available in grey. Open a highlighted move to see a short <strong>“Why this move?”</strong> explanation.</p>
+          <p>These are starting points chosen to suit the need you selected. Follow one, combine several or clear your focus to explore the whole table.</p>
+        </section>
+        <section id="use-a-move">
+          <p class="section-number">04 / Use a move</p>
+          <h2>Make it specific to your problem.</h2>
+          <ol class="use-steps">
+            <li><strong>Name the job.</strong> Write down what you need the idea to achieve, for whom and in what situation.</li>
+            <li><strong>Choose a move.</strong> Read its description and examples until the underlying operation is clear.</li>
+            <li><strong>Apply it to your subject.</strong> Try a few versions. For Strip: “What could we remove so the important part becomes easier to see?”</li>
+            <li><strong>Check the result.</strong> Does it help with the original job? Keep, combine or revise what works.</li>
+          </ol>
+          <p>The examples show how a move works. Borrow the principle and apply it to the material in front of you.</p>
+        </section>
+        <section id="the-thinking">
+          <p class="section-number">05 / The thinking behind it</p>
+          <h2>Making creativity easier to work with.</h2>
+          <p>The project takes inspiration from TRIZ’s systematic approach to inventive problem-solving and Margaret Boden’s account of creativity.</p>
+          <p>Boden describes three forms: <strong>combinational</strong> makes new connections between familiar ideas; <strong>exploratory</strong> finds possibilities within existing rules; <strong>transformational</strong> changes the rules to make new possibilities available.</p>
+          <p>The table’s groups organise the moves. Boden’s framework helps describe how you use them. The same move can explore an existing approach or help invent a new one.</p>
+          <p>This is a working atlas. Moves can overlap, and one idea may use several. Its purpose is to make more approaches visible and easier to try.</p>
+          <p><a class="inline-link" href="https://ojs.aaai.org/aimagazine/index.php/aimagazine/article/view/2254/0" target="_blank" rel="noopener noreferrer">Read Margaret Boden’s framework <span aria-hidden="true">↗</span></a></p>
+        </section>
+        <div class="about-return"><a class="page-link" href="Element-of-Surprise-V5.html">Explore the table <span aria-hidden="true">→</span></a></div>
+      </article>
+    </div>
+  </main>
+  <footer class="page-footer about-footer"><div class="footer-inner"><p>© 2026 Owais Awan.</p><a href="#top">Back to top <span aria-hidden="true">&nbsp;↑</span></a></div></footer>
+</body>
+</html>

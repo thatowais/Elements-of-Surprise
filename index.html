@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f8f7f1">
+  <meta name="description" content="Explore 60 creative moves across ten operations and six layers. Each element includes a description and five real examples.">
+  <title>Element of Surprise — a part of Something Clever</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;550;600;650;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    :root{color-scheme:light;--paper:#f8f7f1;--ink:#242622;--muted:#6a6c62;--hairline:#d9dad0;--sans:'DM Sans',Arial,sans-serif;--serif:'Instrument Serif',Georgia,'Times New Roman',serif}
+    *,*::before,*::after{box-sizing:border-box}
+    html{min-height:100%;background:var(--paper)}
+    body{margin:0;min-height:100vh;color:var(--ink);font:400 15px/1.5 var(--sans);background:radial-gradient(ellipse 65% 230px at 88% 0%,#f6dff0aa,transparent),radial-gradient(ellipse 58% 280px at 8% 0%,#f5edbca3,transparent),var(--paper);-webkit-font-smoothing:antialiased}
+    body::before{content:'';position:absolute;inset:0 0 auto;height:330px;pointer-events:none;opacity:.33;background-image:radial-gradient(#a5a293 .8px,transparent .9px);background-size:23px 23px;mask-image:linear-gradient(#000,transparent)}
+    button,a{-webkit-tap-highlight-color:transparent}
+    button{font:inherit;color:inherit;cursor:pointer}
+    button:focus-visible,a:focus-visible{outline:2px solid var(--ink);outline-offset:5px}
+    button:disabled{cursor:default}
+    .skip{position:absolute;top:-100px;left:24px;z-index:10;padding:12px;background:var(--paper);color:var(--ink)}
+    .skip:focus{top:10px}
+    .page{position:relative;width:min(100%,1512px);margin:0 auto;padding:32px clamp(18px,4.2vw,64px) 36px}
+    .masthead{display:flex;justify-content:space-between;align-items:center;margin-bottom:32px;gap:18px}
+    .wordmark{font-size:19px;font-weight:700;line-height:.89;letter-spacing:-1px}
+    .wordmark span{display:block}
+    .edition{font-size:10px;letter-spacing:1.8px;text-transform:uppercase;color:var(--muted);text-align:right}
+    .edition::before{content:'';display:inline-block;width:5px;height:5px;border-radius:50%;background:#7e8e6c;margin-right:10px;vertical-align:2px}
+    .intro{display:flex;align-items:flex-end;justify-content:space-between;gap:28px;margin-bottom:26px}
+    h1{font:400 clamp(38px,4.55vw,69px)/.98 var(--serif);letter-spacing:-1.6px;margin:0;max-width:1030px}
+    h1 em{font-weight:400}
+    .intro-note{font-size:12px;line-height:1.6;color:var(--muted);max-width:150px;flex:0 0 150px;padding-bottom:3px}
+    .guide{display:flex;align-items:center;justify-content:space-between;gap:18px;border-top:1px solid var(--hairline);padding:15px 0 5px;margin-bottom:5px}
+    .guide p{margin:0;font-size:12px;color:var(--muted)}
+    .guide b{font-weight:550;color:var(--ink)}
+    .guide .interaction{font-size:11px;display:flex;align-items:center;gap:8px;white-space:nowrap}
+    .interaction svg{width:14px;height:14px}
+    .touch-hint{display:none}
+    .map-wrap{overflow-x:auto;overscroll-behavior-x:contain;padding:0 5px 8px;margin:0 -5px;scrollbar-width:thin;scrollbar-color:#c8c9bd transparent}
+    .map{width:100%;min-width:1170px;table-layout:fixed;border-collapse:separate;border-spacing:7px 8px;margin:0}
+    .map col:first-child{width:97px}
+    .map th{font-weight:500;text-align:left;vertical-align:middle}
+    .corner{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);vertical-align:bottom!important;padding:0 9px 13px 0}
+    .operation{padding:0 3px 12px;position:relative;transition:opacity .2s ease}
+    .operation::after{content:'';position:absolute;bottom:4px;left:2px;right:2px;height:2px;background:var(--accent);transform-origin:left;opacity:.7;transition:height .18s,opacity .18s}
+    .operation.is-related::after{height:4px;opacity:1}
+    .operation strong{display:block;font-size:12px;font-weight:650;letter-spacing:-.25px}
+    .operation small{display:block;font-size:10px;color:var(--muted);margin-top:2px;font-weight:400}
+    .level{position:sticky;left:0;z-index:2;background:var(--paper);padding:0 12px 0 0}
+    .level::after{content:'';position:absolute;right:3px;top:23%;bottom:23%;width:2px;background:var(--ink);opacity:0;transform:scaleY(.3);transition:opacity .2s,transform .2s}
+    .level.is-related::after{opacity:.5;transform:scaleY(1)}
+    .level .roman{font-size:9px;letter-spacing:1px;color:#85877b;display:block;margin-bottom:5px}
+    .level strong{font-weight:550;font-size:12px;display:block;letter-spacing:-.15px}
+    .level small{display:block;color:var(--muted);font-size:10px;line-height:1.4;margin-top:3px;font-weight:400}
+    td{padding:0;vertical-align:top}
+    .element{position:relative;width:100%;min-height:105px;border:1px solid #ffffff69;border-radius:7px;padding:9px 10px 10px;background:var(--tint);text-align:left;box-shadow:0 1px 2px #20251b06;display:flex;flex-direction:column;align-items:flex-start;isolation:isolate;transition:transform .22s cubic-bezier(.2,.7,.2,1),box-shadow .22s,background .22s;animation:arrive .55s backwards;animation-delay:var(--delay)}
+    .element::before{content:'';position:absolute;inset:0;border-radius:inherit;background:linear-gradient(145deg,#ffffff36,transparent 65%);z-index:-1}
+    .element .number{font-size:9px;line-height:1.2;letter-spacing:.8px;opacity:.65;font-variant-numeric:tabular-nums}
+    .element .symbol{font:400 35px/1.08 var(--serif);letter-spacing:-.9px;margin:6px 0 5px}
+    .element .name{font-size:10.5px;line-height:1.15;font-weight:550;letter-spacing:-.15px}
+    .element .open-mark{position:absolute;right:8px;top:7px;font-size:15px;line-height:1;opacity:0;transform:translate(-3px,3px);transition:opacity .18s,transform .18s}
+    .element[aria-expanded=true]{box-shadow:0 0 0 1.5px var(--ink)}
+    @media(hover:hover){.element:hover{transform:translateY(-4px);box-shadow:0 7px 15px #333e2414,0 1px 2px #333e2410;background:var(--hover)}.element:hover .open-mark{opacity:.7;transform:translate(0,0)}}
+    .element:active{transform:translateY(-1px) scale(.98)}
+    .element:focus-visible{z-index:3;outline-offset:3px}
+    .tile-tooltip{position:fixed;z-index:20;width:min(250px,calc(100vw - 28px));padding:11px 13px 12px;border:1px solid #ffffffc7;border-radius:10px;background:#fbfaf5f2;box-shadow:0 14px 35px #282b221a,0 2px 7px #282b2210;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);pointer-events:none;opacity:0;transform:translateY(4px) scale(.985);transition:opacity .14s ease,transform .14s ease;visibility:hidden}
+    .tile-tooltip[data-visible="true"]{opacity:1;transform:translateY(0) scale(1);visibility:visible}
+    .tile-tooltip strong{display:block;font-size:11px;font-weight:650;letter-spacing:-.1px;margin-bottom:4px}
+    .tile-tooltip span{display:block;font-size:11px;line-height:1.45;color:var(--muted)}
+    @keyframes arrive{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
+    .sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    dialog{padding:0;border:1px solid #ffffffb3;border-radius:16px;width:min(1056px,calc(100% - 48px));max-width:none;max-height:calc(100dvh - 64px);margin:auto;background:var(--paper);color:var(--ink);box-shadow:0 25px 100px #20231633;overflow:hidden}
+    dialog::backdrop{background:#35392b38;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+    dialog[open]{animation:panel-in .26s cubic-bezier(.2,.7,.2,1)}
+    @keyframes panel-in{from{opacity:0;transform:translateY(12px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+    .dialog-shell{display:grid;grid-template-columns:330px minmax(0,1fr);max-height:calc(100dvh - 66px);overflow:hidden}
+    .element-pane{position:relative;display:flex;flex-direction:column;background:linear-gradient(155deg,var(--tint),#ffffff19);padding:34px 31px 24px;overflow-y:auto}
+    .element-path{font-size:10px;letter-spacing:1.2px;text-transform:uppercase;font-weight:500;opacity:.72}
+    .hero-symbol{font:400 113px/.95 var(--serif);letter-spacing:-4px;margin:38px 0 19px}
+    .hero-symbol sup{font:400 11px/1 var(--sans);vertical-align:top;display:inline-block;letter-spacing:.5px;margin:12px 0 0 8px;opacity:.65}
+    .element-pane h2{font:400 40px/1 var(--serif);letter-spacing:-.7px;margin:0 0 18px}
+    .description{font-size:14px;line-height:1.8;margin:0 0 28px}
+    .element-nav{margin-top:auto;display:flex;align-items:center;justify-content:space-between;padding-top:28px;gap:8px}
+    .nav-control{width:39px;height:39px;border:1px solid #24262235;border-radius:50%;background:transparent;display:flex;align-items:center;justify-content:center;transition:background .18s,transform .18s}
+    .nav-control:hover{background:#ffffff70;transform:translateY(-2px)}
+    .nav-control svg{width:16px;height:16px}
+    .position{font-size:10px;letter-spacing:1px;opacity:.65;font-variant-numeric:tabular-nums}
+    .examples-pane{overflow-y:auto;padding:34px 39px 30px;scrollbar-width:thin;scrollbar-color:#d5d5c9 transparent}
+    .examples-header{padding:0 42px 21px 0;border-bottom:1px solid var(--hairline)}
+    .examples-header h3{font:400 27px/1.15 var(--serif);letter-spacing:-.2px;margin:0 0 6px}
+    .examples-header p{font-size:11px;color:var(--muted);margin:0}
+    .close-control{position:absolute;z-index:3;top:20px;right:20px;border:1px solid var(--hairline);border-radius:50%;background:var(--paper);width:34px;height:34px;display:grid;place-items:center;transition:transform .2s,background .2s}
+    .close-control:hover{transform:rotate(90deg);background:#eeeede}
+    .close-control svg{width:13px;height:13px}
+    .examples{list-style:none;padding:0;margin:0;counter-reset:example}
+    .example{position:relative;padding:20px 0 20px 37px;border-bottom:1px solid var(--hairline);counter-increment:example}
+    .example:last-child{border-bottom:0;padding-bottom:2px}
+    .example::before{content:counter(example,decimal-leading-zero);position:absolute;left:0;top:21px;font-size:10px;letter-spacing:.6px;color:#898c7e;font-variant-numeric:tabular-nums}
+    .example .domain{font-size:9px;text-transform:uppercase;letter-spacing:1.3px;color:var(--muted);margin-bottom:6px}
+    .example.advertising .domain::before{content:'';display:inline-block;width:4px;height:4px;vertical-align:2px;border-radius:50%;background:var(--ink);margin-right:6px}
+    .example h4{font:400 23px/1.13 var(--serif);letter-spacing:-.15px;margin:0 0 7px}
+    .example p{font-size:12.5px;line-height:1.65;margin:0;color:#51574d}
+    .noscript{padding:25px 0;font-size:14px}
+    @media(min-width:1600px){.element{min-height:123px}.element .symbol{font-size:41px;margin-top:8px}.element .name{font-size:12px}}
+    @media(max-width:1100px){.intro{align-items:flex-start}.intro-note{max-width:130px;flex-basis:130px}.map-wrap{margin-right:calc(-1 * clamp(18px,4.2vw,64px));padding-right:clamp(18px,4.2vw,64px)}.touch-hint{display:inline}.desktop-hint{display:none}.dialog-shell{grid-template-columns:290px minmax(0,1fr)}.element-pane{padding:30px 26px 22px}.examples-pane{padding:30px 28px}}
+    @media(max-width:700px){.tile-tooltip{display:none}.page{padding-top:25px}.masthead{margin-bottom:30px}.wordmark{font-size:17px}.edition{font-size:8px;letter-spacing:1.3px}.intro{display:block;margin-bottom:24px}h1{font-size:47px;line-height:1.02;letter-spacing:-1px}.intro-note{max-width:none;font-size:12px;margin-top:13px;padding:0}.intro-note br{display:none}.guide{align-items:flex-start}.guide p{font-size:11px;max-width:220px}.guide .interaction{font-size:10px}.map col:first-child{width:83px}.map{min-width:1140px;border-spacing:6px 8px}.level strong{font-size:12px}.level small{font-size:10px}.level{padding-right:10px}.corner{font-size:8px}.element{min-height:108px}.element .name{font-size:11px}.element .symbol{font-size:36px}.element .open-mark{opacity:.5;transform:none}dialog{width:calc(100% - 20px);max-height:calc(100dvh - 20px);border-radius:13px}.dialog-shell{display:block;max-height:calc(100dvh - 22px);overflow-y:auto}.element-pane{padding:25px 25px 22px;overflow:visible}.element-path{padding-right:32px;font-size:9px}.hero-symbol{font-size:69px;line-height:.9;letter-spacing:-2px;margin:24px 0 12px}.hero-symbol sup{font-size:9px;margin-top:6px}.element-pane h2{font-size:34px;margin:0 0 12px}.description{font-size:13px;line-height:1.7;margin-bottom:0;max-width:540px}.element-nav{padding-top:19px;justify-content:flex-start;gap:18px}.nav-control{width:33px;height:33px}.position{font-size:9px}.examples-pane{padding:25px;overflow:visible}.examples-header{padding-right:0}.examples-header h3{font-size:25px}.example{padding-left:30px}.example h4{font-size:22px}.example p{font-size:13px}.close-control{right:14px;top:14px;background:#fafaf0dd}.examples-header p{font-size:10px}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+    @media print{body{background:#fff}.page{padding:15px;max-width:none}.masthead,.guide,.intro-note,.open-mark{display:none!important}.intro{margin-bottom:20px}h1{font-size:36px}.map-wrap{overflow:visible}.map{min-width:0}.map col:first-child{width:65px}.element{min-height:85px;box-shadow:none;animation:none;print-color-adjust:exact;-webkit-print-color-adjust:exact}.element .symbol{font-size:26px}.element .name{font-size:8px}.level strong,.operation strong{font-size:9px}.level small,.operation small{font-size:8px}dialog{display:none!important}}
+    /* Quiet navigation families; original operation palettes stay intact. */
+    [hidden]{display:none!important}
+    .focus-bar{display:grid;grid-template-columns:minmax(200px,1fr) minmax(170px,.6fr) minmax(215px,.75fr);gap:10px;border-top:1px solid var(--hairline);padding-top:20px}
+    .search-field,.select-field{position:relative;min-width:0}
+    .field-label{display:block;font-size:10px;font-weight:550;color:var(--muted);margin:0 0 6px;letter-spacing:.2px}
+    .search-box{position:relative}
+    .search-icon{position:absolute;left:14px;top:15px;width:16px;height:16px;color:var(--muted);pointer-events:none}
+    .focus-bar input,.focus-bar select{width:100%;min-height:46px;border:1px solid var(--hairline);border-radius:8px;background:#ffffff70;color:var(--ink);font:400 13px var(--sans);transition:border-color .18s,background .18s}
+    .focus-bar input{padding:12px 46px 12px 39px;appearance:none;-webkit-appearance:none}
+    .focus-bar input::-webkit-search-cancel-button{display:none}
+    .focus-bar input::placeholder{color:#75776d;opacity:1}
+    .focus-bar select{padding:11px 33px 11px 13px;appearance:none;-webkit-appearance:none;cursor:pointer}
+    .select-field::after{content:'';position:absolute;right:16px;bottom:20px;width:6px;height:6px;border-right:1.5px solid var(--muted);border-bottom:1.5px solid var(--muted);transform:rotate(45deg);pointer-events:none}
+    .focus-bar input:hover,.focus-bar select:hover{border-color:#a6a89a;background:#ffffffaa}
+    .focus-bar input:focus-visible,.focus-bar select:focus-visible,summary:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+    .focus-bar select.has-value{border-color:#8a927c;background:#edf0e6}
+    .clear-search{position:absolute;right:2px;top:1px;border:0;background:transparent;width:44px;height:44px;font-size:19px;color:var(--muted)}
+    .focus-meta{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:54px;padding:2px 0 8px}
+    .focus-status{display:flex;align-items:center;gap:14px;flex-wrap:wrap;min-width:0}
+    #filter-status{font-size:11px;color:var(--muted);margin:0}
+    .text-control{padding:10px 0;border:0;background:none;font-size:11px;font-weight:550;text-underline-offset:4px}
+    .text-control:hover{text-decoration:underline}
+    .reset-control{color:var(--muted)}
+    .group-help{position:relative;flex:0 0 auto;font-size:11px;color:var(--muted)}
+    .group-help summary{cursor:pointer;list-style:none;padding:12px 0;min-height:44px}
+    .group-help summary::-webkit-details-marker{display:none}
+    .group-help summary::after{content:'+';display:inline-block;margin-left:8px;font-size:14px}
+    .group-help[open] summary::after{content:'−'}
+    .group-note{position:absolute;right:0;top:43px;width:min(370px,calc(100vw - 36px));z-index:8;padding:19px 21px;background:#fcfbf7;border:1px solid var(--hairline);border-radius:10px;box-shadow:0 12px 35px #24262215;font-size:12px;line-height:1.6;color:var(--muted)}
+    .group-note p{margin:0 0 12px}.group-note p:last-child{margin:0}
+    .group-note strong{font-weight:550;color:var(--ink)}
+    .group-note a{color:inherit;text-underline-offset:3px}
+    .family-heading{padding:0 0 8px}
+    .family-button{width:100%;display:flex;align-items:center;gap:12px;text-align:left;padding:9px 3px;min-height:40px;background:none;border:0;font-size:10px;letter-spacing:1.3px;text-transform:uppercase;color:var(--muted)}
+    .family-button::after{content:'';flex:1;border-top:1px solid var(--hairline)}
+    .family-button:hover,.family-button[aria-pressed=true]{color:var(--ink)}
+    .family-button[aria-pressed=true]::after{border-color:var(--ink)}
+    .family-gap{padding-left:12px!important}
+    .element{transition:transform .22s cubic-bezier(.2,.7,.2,1),box-shadow .22s,background .22s,opacity .22s,filter .22s}
+    .element.is-muted{background:#e8e8e1;filter:grayscale(1);opacity:.7;box-shadow:none}
+    .element.is-muted:hover,.element.is-muted:focus-visible{opacity:1;background:#e8e8e1}
+    .element.is-match{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+    .element.is-match::after{content:'';position:absolute;right:10px;bottom:10px;width:4px;height:4px;border-radius:50%;background:var(--ink);opacity:.65}
+    .element .operation-label{display:none}
+    .operation.is-muted,.level.is-muted{opacity:.65}
+    .nav-control,.close-control{min-width:44px;min-height:44px}
+    .nav-control:disabled{opacity:.3;transform:none;background:none}
+    .position{letter-spacing:.3px;text-align:center}
+    .map-wrap{scroll-margin-top:16px}
+    .element{scroll-margin:24px}
+    @media(min-width:701px){.map col:first-child{width:100px}.map{min-width:1170px}}
+    @media(max-width:700px){
+      .focus-bar{grid-template-columns:1fr 1fr;gap:12px 8px;padding-top:17px}
+      .search-field{grid-column:1/-1}
+      .focus-bar input,.focus-bar select{font-size:16px}
+      .focus-bar select{padding-left:10px;letter-spacing:-.3px}
+      .field-label{font-size:10px}
+      .focus-meta{align-items:flex-start;padding:5px 0;gap:7px}
+      .focus-status{gap:0 13px;align-items:center}
+      #filter-status{flex-basis:100%;padding-top:12px;font-size:11px;min-height:37px}
+      .text-control{min-height:44px;padding:7px 0}
+      .group-help{font-size:10px;white-space:nowrap}
+      .group-note{white-space:normal;right:0}
+      .map-wrap{margin:0;padding:0;overflow:visible}
+      .map,.map tbody{display:block;min-width:0;width:100%;border-spacing:0}
+      .map colgroup,.map thead{display:none}
+      .map tbody tr{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:10px;row-gap:10px;margin:0 0 25px}
+      .map tbody td{display:block;position:relative;min-width:0;padding:0!important}
+      .map .level{display:block;grid-column:1/-1;position:static;padding:18px 0 0;border-top:1px solid var(--hairline);background:none}
+      .level::after{display:none}
+      .level .roman{display:inline-block;margin:0 8px 0 0;font-size:10px;vertical-align:2px}
+      .level strong{display:inline;font:400 28px/1.15 var(--serif);letter-spacing:-.3px}
+      .level small{display:block;font-size:11px;margin-top:4px}
+      .map td.family-start,.map td.family-start+td{margin-top:29px}
+      .map td.family-start::before{content:attr(data-family);position:absolute;top:-24px;left:0;right:0;white-space:nowrap;text-transform:uppercase;font-size:9px;font-weight:550;letter-spacing:1.3px;color:var(--muted)}
+      .element{min-height:144px;padding:13px 14px;border-radius:9px}
+      .element .number{font-size:10px}
+      .element .symbol{font-size:43px;margin:7px 0 5px}
+      .element .name{font-size:12px;line-height:1.2}
+      .element .operation-label{display:block;font-size:9px;opacity:.6;margin-top:6px}
+      .element .open-mark{right:12px;top:10px}
+      .element.is-match::after{bottom:14px;right:14px}
+      .element-pane{padding-right:25px}
+      .close-control{right:11px;top:11px}
+      .element-path{padding-right:34px;line-height:1.6}
+    }
+    @media print{
+      .focus-bar,.focus-meta{display:none!important}
+      .map-wrap{overflow:visible}.map{display:table;min-width:0;width:100%;border-spacing:4px}
+      .map thead{display:table-header-group}.map tbody{display:table-row-group}
+      .map tbody tr{display:table-row}.map tbody td,.map .level{display:table-cell}
+      .map td.family-start::before{display:none}.map td{padding:0!important}
+      .map .level{position:static;border:0;padding:0 6px 0 0;font-size:9px}
+      .level strong{font:550 9px var(--sans)}.level small{font-size:8px}
+      .map colgroup{display:table-column-group}.map col:first-child{width:65px}
+      .element.is-muted{opacity:1;filter:none;background:var(--tint)}
+      .element.is-match{box-shadow:none;border-color:#ffffff69}.element.is-match::after{display:none}
+      .element{min-height:85px;padding:7px}.element .symbol{font-size:26px}.element .name{font-size:8px}.element .operation-label{display:none}
+      .family-button{font-size:9px;padding:3px;min-height:0;letter-spacing:.5px}
+    }
+
+    .focus-trigger{position:relative;display:grid;place-items:center;width:46px;height:46px;flex:0 0 46px;border:1px solid #24262235;border-radius:50%;background:#ffffff60;transition:background .18s,transform .18s}
+    .focus-trigger:hover{background:#fff;transform:translateY(-2px)}
+    .focus-trigger svg{width:20px;height:20px}
+    .focus-trigger.has-focus{background:var(--ink);color:var(--paper)}
+    .focus-trigger.has-focus::after{content:'';position:absolute;right:0;top:0;width:9px;height:9px;background:#bed4b5;border:2px solid var(--paper);border-radius:50%}
+    .focus-summary{position:sticky;top:8px;z-index:5;display:flex;justify-content:space-between;align-items:center;gap:12px;background:#f8f7f1f5;border:1px solid var(--hairline);border-radius:9px;padding:4px 14px;margin-bottom:12px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+    .focus-summary p{margin:0;font-size:11px;line-height:1.5;min-width:0}
+    .focus-summary strong{font-weight:600}
+    .focus-summary-actions{display:flex;align-items:center;gap:15px;flex-shrink:0}
+    .focus-summary .text-control{min-height:44px;white-space:nowrap}
+    .family-button{cursor:default}
+    .family-button:hover{color:var(--muted)}
+    .map-meta{display:flex;justify-content:flex-end;min-height:38px;margin-top:-10px}
+    .group-note{z-index:9}
+    .focus-dialog{position:fixed;inset:92px max(clamp(18px,4.2vw,64px),calc((100vw - 1384px)/2)) auto auto;margin:0;width:520px;max-width:calc(100vw - 32px);max-height:calc(100dvh - 116px);border-radius:17px;overflow:hidden}
+    .focus-shell{display:flex;flex-direction:column;max-height:calc(100dvh - 118px)}
+    .focus-header{padding:29px 30px 22px;flex-shrink:0;position:relative;border-bottom:1px solid var(--hairline)}
+    .eyebrow{margin:0 0 9px;font-size:9px;font-weight:550;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
+    .focus-header h2{font:400 36px/1.05 var(--serif);letter-spacing:-.6px;margin:0 32px 10px 0;outline:none}
+    .focus-header>p:last-of-type{font-size:12px;line-height:1.6;color:var(--muted);margin:0;max-width:360px}
+    .focus-content{padding:22px 30px 20px;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;min-height:0}
+    .route-picker{display:flex;gap:3px;padding:4px;background:#eaeae2;border-radius:9px;margin-bottom:25px}
+    .route-picker button{flex:1;padding:11px 5px;min-height:44px;border:0;border-radius:6px;background:none;color:var(--muted);font-size:11px;line-height:1.3;white-space:nowrap;transition:background .18s,box-shadow .18s,color .18s}
+    .route-picker button[aria-selected=true]{background:#fffef9;color:var(--ink);box-shadow:0 1px 4px #2426220f}
+    .need-fieldset{margin:0;padding:0;border:0;min-width:0}
+    .need-fieldset legend{font-size:14px;font-weight:550;letter-spacing:-.2px;margin-bottom:13px;padding:0}
+    .need-options{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .need-options.is-stuck{grid-template-columns:1fr;gap:7px}
+    .need-choice{position:relative;display:flex;min-width:0;cursor:pointer}
+    .need-choice input{position:absolute;width:1px;height:1px;clip-path:inset(50%);overflow:hidden}
+    .need-choice span{position:relative;display:flex;align-items:center;width:100%;min-height:53px;padding:12px 30px 12px 13px;border:1px solid var(--hairline);border-radius:8px;font-size:12px;line-height:1.35;background:#ffffff4d;transition:background .15s,border-color .15s}
+    .need-choice span::after{content:'';position:absolute;width:13px;height:13px;border:1px solid #b0b3a4;border-radius:50%;right:12px;top:calc(50% - 6.5px)}
+    .need-choice:hover span{background:#fffef9;border-color:#9dA28d}
+    .need-choice input:checked+span{background:#e5eadc;border-color:#89967a}
+    .need-choice input:checked+span::after{background:var(--ink);border:4px solid #e5eadc;box-shadow:0 0 0 1px #89967a}
+    .need-choice input:focus-visible+span{outline:2px solid var(--ink);outline-offset:3px}
+    .need-options.is-stuck .need-choice span{min-height:44px;padding-top:10px;padding-bottom:10px}
+    .refine{margin-top:18px;border-top:1px solid var(--hairline);font-size:11px}
+    .refine summary{display:flex;justify-content:space-between;gap:10px;align-items:center;min-height:48px;padding:11px 0;cursor:pointer;list-style:none}
+    .refine summary::-webkit-details-marker{display:none}
+    .refine summary>span:first-child::before{content:'+';margin-right:8px}
+    .refine[open] summary>span:first-child::before{content:'−'}
+    .optional{font-size:10px;color:var(--muted);flex-shrink:0}
+    .refine label{display:block;font-size:10px;color:var(--muted);margin-bottom:7px}
+    .refine select{width:100%;min-height:45px;border:1px solid var(--hairline);border-radius:7px;background:#fffef8;padding:10px 8px;font:400 12px var(--sans);color:var(--ink)}
+    .refine select:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+    .explore-intro{padding:2px 0 24px;text-align:center}
+    .explore-mark{font:400 46px/1 var(--serif);color:#71855e;display:block;margin-bottom:15px}
+    .explore-intro h3{font:400 29px/1.1 var(--serif);letter-spacing:-.4px;margin:0 0 11px}
+    .explore-intro p{font-size:12px;line-height:1.7;color:var(--muted);max-width:280px;margin:0 auto}
+    .focus-footer{border-top:1px solid var(--hairline);padding:17px 30px 22px;flex-shrink:0;background:var(--paper)}
+    
+    .focus-footer-actions{display:flex;justify-content:space-between;align-items:center;gap:14px}
+    .focus-footer .text-control{min-height:45px;color:var(--muted)}
+    .apply-focus{display:flex;align-items:center;justify-content:center;gap:23px;border:1px solid var(--ink);border-radius:8px;min-height:46px;padding:12px 19px;background:var(--ink);color:var(--paper);font-size:12px;transition:opacity .18s,transform .18s}
+    .apply-focus:hover:not(:disabled){transform:translateY(-1px)}
+    .apply-focus:disabled{opacity:.35}
+    .focus-reason{padding:13px 0 0;border-top:1px solid #2426222b;margin:0 0 18px;font-size:12px;line-height:1.6}
+    .focus-reason strong{display:block;font-size:9px;text-transform:uppercase;letter-spacing:1px;font-weight:550;margin-bottom:6px}
+    .focus-reason p{margin:0}.focus-reason p+p{margin-top:6px}
+    .element-pane .description{margin-bottom:22px}
+    @media(max-width:700px){
+      .masthead{margin-bottom:27px}
+      .focus-trigger{width:44px;height:44px;flex-basis:44px}
+      .focus-dialog{inset:auto 0 0;width:100%;max-width:100%;max-height:92dvh;border-radius:18px 18px 0 0;margin:0}
+      .focus-shell{max-height:92dvh}
+      .focus-header{padding:24px 22px 18px}
+      .focus-header h2{font-size:clamp(28px,8vw,33px)}
+      .focus-header>p:last-of-type{font-size:11px;max-width:270px}
+      .focus-content{padding:18px 22px}
+      .route-picker{margin-bottom:21px}
+      .route-picker button{font-size:10px;padding-left:3px;padding-right:3px}
+      .need-choice span{font-size:11px;min-height:54px;padding-left:11px;padding-right:28px}
+      .need-choice span::after{right:10px}
+      .need-options.is-stuck .need-choice span{font-size:12px;min-height:48px}
+      .refine select{font-size:16px}
+      .focus-footer{padding:14px 22px max(19px,env(safe-area-inset-bottom))}
+      .apply-focus{font-size:11px;padding:12px 14px;gap:14px}
+      .focus-summary{display:block;padding:10px 13px 0;top:6px}
+      .focus-summary p{font-size:10px}
+      .focus-summary-actions{gap:17px;flex-wrap:wrap}
+      .focus-summary .text-control{font-size:10px}
+      .map-meta{margin-top:-6px}
+      .focus-reason{margin-bottom:0;font-size:12px}
+      .element-pane .description{margin-bottom:18px}
+    }
+    @media(max-height:550px) and (min-width:701px){.focus-dialog{top:16px;max-height:calc(100dvh - 32px)}.focus-shell{max-height:calc(100dvh - 34px)}.focus-header{padding-top:20px;padding-bottom:15px}.focus-content{padding-top:16px}.focus-footer{padding-top:12px;padding-bottom:13px}}
+    @media print{.focus-trigger,.focus-summary,.map-meta,.focus-dialog{display:none!important}}
+
+    .masthead{justify-content:flex-end;gap:10px}
+    .page-link{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:46px;padding:11px 19px;border:1px solid #24262235;border-radius:24px;background:#ffffff60;color:var(--ink);font-size:12px;font-weight:500;line-height:1.4;text-decoration:none;transition:background .18s,transform .18s}
+    .page-link:hover{background:#fff;transform:translateY(-2px)}
+    .intro{display:block;margin-bottom:25px}
+    .intro-description{max-width:650px;margin:12px 0 0;font-size:14px;line-height:1.65;color:var(--muted);text-wrap:pretty}
+    .intro-credits{display:flex;align-items:baseline;flex-wrap:wrap;gap:0 4px;margin:6px 0 0;font-size:12px;line-height:1.6;color:var(--muted)}
+    .intro-credits strong{font-weight:550;color:var(--ink)}
+    .intro-credits a{color:inherit;text-decoration:none}
+    .intro-credits a:hover{color:var(--muted)}
+    .credit-divider{color:#a8aa9d}
+    .page-footer{position:relative;width:min(100%,1512px);margin:0 auto;padding:0 clamp(18px,4.2vw,64px) 25px}
+    .footer-inner{display:flex;align-items:center;justify-content:space-between;gap:12px;border-top:1px solid var(--hairline);padding-top:17px;color:var(--muted);font-size:11px;line-height:1.5}
+    .footer-inner p{margin:0}
+    .footer-inner a{display:inline-flex;align-items:center;min-height:44px;color:inherit;text-decoration:none;text-underline-offset:4px}
+    .footer-inner a:hover{text-decoration:underline}
+    #top{scroll-margin-top:20px}
+    @media(max-width:700px){
+      .masthead{margin-bottom:27px;gap:8px}
+      .page-link{min-height:44px;font-size:11px;padding:10px 16px}
+      .intro-description{font-size:13px;line-height:1.65;margin-top:11px;max-width:38em}
+      .intro-credits{font-size:11px;gap:0 4px;margin-top:5px}
+      .page-footer{padding-bottom:max(18px,env(safe-area-inset-bottom))}
+      .footer-inner{font-size:10px;align-items:center;padding-top:10px}
+    }
+    @media print{.page-footer{padding-top:10px}.footer-inner a{display:none}.intro-description{font-size:11px}.intro-credits{font-size:10px}}
+
+  </style>
+</head>
+<body>
+  <a class="skip" href="#creative-map">Skip to the table</a>
+  <main class="page" id="top">
+    <nav class="masthead" aria-label="Page navigation">
+      <a class="page-link" href="about.html">About</a>
+      <button type="button" id="open-focus" class="focus-trigger" aria-label="Find a starting point" title="Find a starting point" aria-haspopup="dialog" aria-controls="focus-dialog" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/><circle cx="9" cy="6" r="2" fill="var(--paper)"/><circle cx="16" cy="12" r="2" fill="var(--paper)"/><circle cx="8" cy="18" r="2" fill="var(--paper)"/></svg>
+      </button>
+    
+    </nav>
+    <header class="intro">
+      <h1>The Elements of Surprise.</h1>
+      <p class="intro-description">An atlas of creative thinking, mapping 60 ways to find, shape and develop ideas across disciplines.</p>
+      <p class="intro-credits"><strong>a part of Something Clever</strong> <strong>by <a href="https://www.instagram.com/thatowais/" target="_blank" rel="noopener noreferrer">Owais Awan</a></strong></p>
+    </header>
+   
+    <div class="focus-summary" id="focus-summary" hidden>
+      <p id="focus-summary-copy"></p>
+      <div class="focus-summary-actions">
+        <button type="button" id="review-focus" class="text-control">Explore moves ↗</button>
+        <button type="button" id="reshuffle-focus" class="text-control" hidden>Another six</button>
+        <button type="button" id="edit-focus" class="text-control">Change</button>
+        <button type="button" id="reset-focus" class="text-control reset-control">Clear</button>
+      </div>
+    </div>
+    <p class="sr-only" id="focus-announcement" role="status" aria-live="polite" aria-atomic="true"></p>
+    <div class="map-meta">        <details class="group-help" id="group-help">
+          <summary>About the groups</summary>
+          <div class="group-note">
+            <p><strong>Connect</strong> — bring ideas together or carry an idea across.<br><strong>Edit</strong> — add, remove, replace or separate parts.<br><strong>Reshape</strong> — change order, scale, direction or repetition.</p>
+            <p>These are navigation groups. Boden’s three forms describe a creative process: combining ideas, exploring within a set of rules, or changing those rules. A move here can serve more than one form, depending on how you use it.</p>
+            <p><a href="https://ojs.aaai.org/aimagazine/index.php/aimagazine/article/view/2254/0" target="_blank" rel="noopener noreferrer">Read Margaret Boden’s framework ↗</a></p>
+          </div>
+        </details></div>
+
+    <div class="map-wrap" id="creative-map" tabindex="-1">
+      <table class="map" aria-label="The periodic table of creativity: ten operations across six layers">
+        <caption class="sr-only">Select any element for its description and five real examples. Arrow keys move between elements.</caption>
+        <colgroup><col></colgroup><colgroup span="2"></colgroup><colgroup span="4"></colgroup><colgroup span="4"></colgroup>
+        <thead id="map-head"></thead>
+        <tbody id="map-body"></tbody>
+      </table>
+    </div>
+    <noscript><p class="noscript">Enable JavaScript to explore the table and its examples.</p></noscript>
+  </main>
+  <footer class="page-footer"><div class="footer-inner"><p>© 2026 Owais Awan.</p><a href="#top">Back to top <span aria-hidden="true">&nbsp;↑</span></a></div></footer>
+  <dialog id="focus-dialog" class="focus-dialog" aria-labelledby="focus-title" aria-describedby="focus-intro">
+    <form id="focus-form" class="focus-shell">
+      <header class="focus-header">
+        <p class="eyebrow">A little direction</p>
+        <h2 id="focus-title" tabindex="-1">Find a starting point.</h2>
+        <p id="focus-intro">Choose what you need. We’ll highlight six moves to try.</p>
+        <button type="button" class="close-control" id="close-focus" aria-label="Close filters"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.3"><path d="m3 3 10 10M13 3 3 13"/></svg></button>
+      </header>
+      <div class="focus-content">
+        <div class="route-picker" role="tablist" aria-label="What brings you here?">
+          <button type="button" role="tab" id="route-brief" data-route="brief" aria-controls="route-panel" aria-selected="true">Work on a brief</button>
+          <button type="button" role="tab" id="route-stuck" data-route="stuck" aria-controls="route-panel" aria-selected="false" tabindex="-1">Get unstuck</button>
+          <button type="button" role="tab" id="route-explore" data-route="explore" aria-controls="route-panel" aria-selected="false" tabindex="-1">Explore</button>
+        </div>
+        <section id="route-panel" role="tabpanel" aria-labelledby="route-brief">
+          <fieldset class="need-fieldset" id="need-fieldset">
+            <legend id="need-question">What needs to happen?</legend>
+            <div class="need-options" id="need-options"></div>
+          </fieldset>
+          <div id="explore-intro" class="explore-intro" hidden>
+            <span class="explore-mark" aria-hidden="true">↗</span>
+            <h3>Take a different route.</h3>
+            <p>Six moves from across the map. Try one you wouldn’t normally reach for.</p>
+          </div>
+          <details class="refine" id="refine-focus">
+            <summary><span id="refine-summary">Add where you’re stuck</span><span class="optional">Optional</span></summary>
+            <label id="refine-label" for="refine-select">Where are you stuck?</label>
+            <select id="refine-select"><option value="">No additional preference</option></select>
+          </details>
+        </section>
+      </div>
+      <footer class="focus-footer">
+        
+        <div class="focus-footer-actions"><button type="button" id="clear-focus" class="text-control">Clear focus</button><button type="submit" id="apply-focus" class="apply-focus" disabled>Highlight six moves <span aria-hidden="true">↗</span></button></div>
+      </footer>
+    </form>
+  </dialog>
+
+  <div class="tile-tooltip" id="element-tooltip" role="tooltip" aria-hidden="true"><strong id="tooltip-title"></strong><span id="tooltip-copy"></span></div>
+  <dialog id="element-dialog" aria-labelledby="element-title" aria-describedby="element-description">
+    <button type="button" class="close-control" id="close-dialog" aria-label="Close element"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.3"><path d="m3 3 10 10M13 3 3 13"/></svg></button>
+    <div class="dialog-shell">
+      <section class="element-pane">
+        <div class="element-path" id="element-path"></div>
+        <div class="hero-symbol" id="hero-symbol" aria-hidden="true"></div>
+        <h2 id="element-title"></h2>
+        <p class="description" id="element-description"></p>
+        <aside class="focus-reason" id="focus-reason" aria-label="Why this move?" hidden></aside>
+        <nav class="element-nav" aria-label="Explore elements">
+          <button type="button" class="nav-control" id="prev-element" aria-label="Previous element"><svg viewBox="0 0 20 20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M17 10H4m5-5-5 5 5 5"/></svg></button>
+          <span class="position" id="element-position"></span>
+          <button type="button" class="nav-control" id="next-element" aria-label="Next element"><svg viewBox="0 0 20 20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3 10h13m-5-5 5 5-5 5"/></svg></button>
+        </nav>
+      </section>
+      <section class="examples-pane" aria-labelledby="examples-title">
+        <div class="examples-header"><h3 id="examples-title">Five real examples.</h3><p>Real campaigns, products and works chosen to show the move.</p></div>
+        <ol class="examples" id="examples"></ol>
+      </section>
+    </div>
+    <span class="sr-only" id="selection-status" aria-live="polite"></span>
+  </dialog>
+  <script id="table-data" type="application/json">{"levels":[{"name":"Surface","meaning":"the material"},{"name":"Context","meaning":"where it meets people"},{"name":"Structure","meaning":"how parts relate"},{"name":"Frame","meaning":"how it is seen"},{"name":"Rules","meaning":"what the field allows"},{"name":"Purpose","meaning":"what it is for"}],"groups":[{"name":"Combine","verb":"join","tint":"#efd0d9","hover":"#edc5d1","accent":"#c18c9c"},{"name":"Divide","verb":"split","tint":"#f0d6bf","hover":"#eeccb0","accent":"#c89974"},{"name":"Add","verb":"put in","tint":"#f1d9ae","hover":"#eecf9c","accent":"#c9a05f"},{"name":"Remove","verb":"take away","tint":"#eee4bc","hover":"#eadfa9","accent":"#baa965"},{"name":"Swap","verb":"replace","tint":"#dce5bf","hover":"#d4dfa9","accent":"#9daf70"},{"name":"Reorder","verb":"move","tint":"#c9e2d7","hover":"#bcdccd","accent":"#79aa93"},{"name":"Scale","verb":"resize or modulate","tint":"#cbe0e8","hover":"#bdd9e3","accent":"#7ca5b5"},{"name":"Invert","verb":"flip","tint":"#d3d9ed","hover":"#c7d0e8","accent":"#8b97bb"},{"name":"Map","verb":"carry across","tint":"#ded4e9","hover":"#d5c8e3","accent":"#a28bb7"},{"name":"Loop","verb":"fold back","tint":"#e8d2e2","hover":"#e0c5d8","accent":"#b58aa5"}],"entries":[{"symbol":"Bl","name":"Blend","row":0,"column":0,"description":"Fuse two ingredients, materials or styles into one product. Use it when neither is distinctive alone but the pairing is. Not Graft, which borrows a format.","examples":[["Food","Salted caramel","Sweet and salty combined into one flavour, now standard across chocolate and ice cream."],["Food","Cronut","Dominique Ansel's 2013 croissant-doughnut hybrid sold out daily, with queues outside the bakery."],["Music","A Tribe Called Quest","Their 1991 album The Low End Theory built hip-hop beats on jazz bass samples."],["Product","iPhone","Combined a phone, an iPod and an internet device in one object (2007)."],["Advertising","Reese's","1970s ads were built on one idea: chocolate and peanut butter are better together."]],"summary":"Fuse two things so they read as one."},{"symbol":"Fr","name":"Fragment","row":0,"column":1,"description":"Split one asset, message or product into small standalone units. Use it when the whole is too big to share, buy or remember. Not Spread, which places one idea in different locations.","examples":[["Advertising","Share a Coke","Coca-Cola printed popular first names on bottles (Australia, 2011), turning one product into personal pieces."],["Media","Spotify Wrapped","A year of listening data is split into short cards people share."],["Retail","Shampoo sachets","Brands sold single-use sachets in India and Southeast Asia so low-income buyers could pay per wash."],["Art","Hannah Höch","Her 1920s photomontages cut up magazine images and reassembled the pieces."],["Music","Hip-hop sampling","Producers cut short fragments from old records and rebuild them into new beats."]],"summary":"Break something into pieces that work on their own."},{"symbol":"Ly","name":"Layer","row":0,"column":2,"summary":"Add a sensory detail on top of the material.","description":"Lay a sound, scent, texture or visual effect over what already exists. Use it when the base is sound but the experience is flat. Not Blend, which fuses two existing materials.","examples":[["Technology","Instagram filters (2010)","Added a vintage-style layer to phone photos, which became the app's signature feature."],["Music","Auto-Tune on Cher's 'Believe' (1998)","Producers pushed pitch correction until it was audible, turning a corrective tool into a vocal style."],["Food","UK traffic-light food labels (2013)","Added red, amber and green nutrition colours to the front of packs so shoppers can compare at a glance."],["Design","Tactile paving (1960s)","Raised bumps added to pavements in Japan so blind pedestrians can feel crossings and platform edges."],["Film","THX Deep Note (1983)","A synthesised sound added before films in THX-certified cinemas, now one of the best-known sonic logos."]]},{"symbol":"St","name":"Strip","row":0,"column":3,"description":"Remove decoration, branding or features until one element carries the message. Use it when the idea is buried under detail. Not Omit, which removes a structural part and lets the audience infer it.","examples":[["Advertising","iPod silhouettes","Apple ads showed black silhouettes with a white cord and no product detail."],["Brand","Muji","Sells products with no logo or decoration; the name means roughly 'no-brand quality goods'."],["Design","Dieter Rams","Braun products were cut down to essential controls, guided by 'less, but better'."],["Advertising","VW 'Lemon' (1960)","A plain layout: one photo of a Beetle and a short headline."],["Product","Google homepage","A logo and one search box, while rivals like Yahoo ran crowded portals."]],"summary":"Remove surface detail so one thing stands out."},{"symbol":"Sb","name":"Substitute","row":0,"column":4,"description":"Replace one component with another that does the same job differently. Use it to change cost, feel or meaning without changing the purpose. Not Replace a rule, which changes how the system operates.","examples":[["Product","Dyson","Replaced the vacuum cleaner bag with cyclone separation."],["Food","Impossible Burger","Plant-based heme replaces meat to give a beef-like flavour."],["Fashion","Chanel jersey","Gabrielle Chanel used jersey, a fabric then common in men's underwear, for women's clothing."],["Packaging","Ecovative","Mushroom-based material replaces polystyrene foam in packaging; Dell used it."],["Advertising","Tesla","Spends almost nothing on paid ads; product launches and Elon Musk's own posts do the job."]],"summary":"Keep the job, replace what does it."},{"symbol":"Sh","name":"Shuffle","row":0,"column":5,"description":"Rearrange existing elements, often by chance, to create new relationships. Use it when the material is good but the layout is tired. Not Resequence, which deliberately changes the order of events.","examples":[["Literature","Burroughs and Bowie","Burroughs cut up text and rearranged it; Bowie used the method for lyrics."],["Product","iPod Shuffle (2005)","A player with no screen that plays your own songs in random order."],["Literature","Hopscotch (1963)","Cortázar's novel offers two reading orders for the same chapters."],["Retail","IKEA room sets","Showrooms group furniture by room and use, not by product type."],["Music","The Grey Album (2004)","Danger Mouse rearranged Jay-Z and Beatles recordings into a new album."]],"summary":"Keep the parts, rearrange them."},{"symbol":"Ms","name":"Magnify","row":0,"column":6,"description":"Scale one detail up until it becomes the subject. Use it to make a small proof point or behaviour impossible to ignore. Not Push to extreme, which takes a variable to its limit.","examples":[["Advertising","Volvo Trucks 'Epic Split' (2013)","Jean-Claude Van Damme does a split between two moving trucks to show steering precision."],["Advertising","Intel Inside (1991)","Made a part nobody saw, the processor, the headline of PC advertising."],["Product","OXO Good Grips (1990)","Sam Farber made thick handles after watching his wife's arthritis make peelers painful."],["Art","Claes Oldenburg","Built giant everyday objects, such as a 45-foot clothespin in Philadelphia."],["Film","Sergio Leone","Extreme close-ups of eyes stretched the tension of duels in The Good, the Bad and the Ugly."]],"summary":"Make one detail much bigger or more intense."},{"symbol":"Ng","name":"Negate","row":0,"column":7,"description":"Use empty space, silence or a missing part as the main element. Use it when the viewer can read what is absent. Not Omit, which leaves content out; Negate makes the gap itself the message.","examples":[["Design","FedEx logo","An arrow sits in the negative space between the E and the x."],["Advertising","Toblerone","The mountain on the pack hides a bear, the emblem of Bern, in its outline."],["Design","WWF panda","The logo uses blank space to complete the panda's shape."],["Music","John Cage, 4'33\"","A 'piece' with no played notes; the room's sounds become the music."],["Architecture","Church of the Light","Tadao Ando cut a cross-shaped opening in the wall; the light forms the cross."]],"summary":"Flip figure and ground: let the gap carry the message."},{"symbol":"Tr","name":"Translate","row":0,"column":8,"description":"Express the same information in another sense or format, such as numbers as sound. Use it to reveal patterns the original format hides. Not Port, which moves a whole idea between media.","examples":[["Science","Geiger counter","Converts radiation into audible clicks; faster clicks mean more radiation."],["Advertising","Dumb Ways to Die (2012)","Metro Trains Melbourne turned rail safety rules into a catchy animated song."],["Product","Nike FuelBand","Turned body movement into a single score, so effort could be compared."],["Science","Florence Nightingale","Her 1858 rose diagram turned mortality statistics into a chart that pushed for hospital reform."],["Art","Kandinsky","Painted works titled as musical Compositions and Improvisations, translating sound into colour."]],"summary":"Convert the same information into another medium."},{"symbol":"Ec","name":"Echo","row":0,"column":9,"description":"Bring back a sound, line, image or behaviour so it is recognised on return. Use it to build recall over time. Not Repeat, which multiplies one unit inside a single work.","examples":[["Advertising","McDonald's 'I'm lovin' it'","A five-note whistle used in ads worldwide since 2003."],["TV","Law & Order (1990)","A two-note sound effect marks every scene change, and the show is recognised by it."],["Advertising","Got Milk? (1993)","One recurring question used across hundreds of ads."],["Music","Wagner's Ring cycle","A short theme tied to a character returns whenever that character matters."],["Film","Pixar truck","The Pizza Planet truck appears as a hidden detail in nearly every Pixar film."]],"summary":"Repeat a recognisable detail so it builds meaning."},{"symbol":"Pa","name":"Pair","row":1,"column":0,"summary":"Tie two channels or places together so each completes the other.","description":"Link two media, platforms or places so the idea only works across both. Use it when one channel alone is ordinary. Not Merge rulebooks, which fuses two categories' rules.","examples":[["Advertising","Tracking Bad Bunny (2025)","The album's track titles were replaced by map coordinates that fans explored in Google Street View."],["Product","Moleskine and Evernote (2012)","Special notebook pages that Evernote's app could capture and make searchable, linking paper and software."],["Technology","Word Lens (2010)","Quest Visual's app translated printed text live through a phone camera; Google later built it into Translate."],["Business","Uber and Spotify (2014)","Riders could play their own Spotify playlists during rides in selected cities."],["Culture","NORAD Tracks Santa (1955)","A Sears ad misprinted a phone number, sending children's calls to a military hotline; staff answered with Santa updates, now an annual tradition."]]},{"symbol":"Sd","name":"Spread","row":1,"column":1,"summary":"Spread one idea across many places or moments.","description":"Release parts of one idea in different places or at different times so people piece it together. Use it when a single moment is too small to carry the idea. Not Fragment, which cuts an asset into pieces.","examples":[["Advertising","The Beast (2001)","Microsoft's promotion for the film A.I. hid clues across websites, emails and phone numbers for players to solve together."],["Film","The Dark Knight 'Why So Serious?' (2007)","A puzzle hunt across cities and websites built the film's world months before release."],["Art","Banksy's Better Out Than In (2013)","One new piece a day for a month across New York."],["Advertising","Jay-Z's Decoded and Bing (2010)","Pages of the book were hidden in places around the world and found with Bing maps."],["Advertising","Oreo Daily Twist (2012)","One topical ad a day for 100 days to mark the cookie's 100th birthday."]]},{"symbol":"Pl","name":"Plant","row":1,"column":2,"summary":"Put something new into a place or moment.","description":"Install a new object, event or message in a place or moment where it wasn't. Use it when the location carries the meaning. Not Relocate, which moves something that already exists.","examples":[["Art","Charging Bull (1989)","Arturo Di Modica left a bronze bull outside the New York Stock Exchange overnight without permission, and public demand kept it in the city."],["Art","Stolpersteine (1992)","Gunter Demnig sets small brass plaques into pavements outside the last homes of Nazi victims, now more than 100,000 across Europe."],["Advertising","Piano Stairs (2009)","Volkswagen's Fun Theory turned a Stockholm subway staircase into piano keys, and more people reportedly chose the stairs."],["Community","Little Free Library (2009)","Todd Bol put a small book-sharing box in his Wisconsin yard; the network now counts more than 100,000 libraries."],["Activism","PARK(ing) Day (2005)","Design studio Rebar paid a San Francisco parking meter and turned the space into a small park; it became an annual global event."]]},{"symbol":"Dk","name":"Go dark","row":1,"column":3,"summary":"Be absent from the place everyone expects you.","description":"Withdraw from a channel, season or event the category treats as essential. Use it when absence says more than a message would. Not Withhold, which hides information inside a message.","examples":[["Music","Adele's 25 (2015)","Held the album back from streaming services at launch, and it still sold millions of copies."],["Technology","Wikipedia blackout (2012)","English Wikipedia went offline for 24 hours to protest the SOPA bill."],["Brand","Lush leaves social media (2021)","The UK business quit Instagram, Facebook, TikTok and Snapchat, citing concerns about harm to users."],["Retail","Zara","Spends a small share of sales on advertising, putting the money into prime store locations."],["Games","Nintendo Direct (2013)","Nintendo dropped E3 press conferences in favour of its own online presentations."]]},{"symbol":"Rl","name":"Relocate","row":1,"column":4,"description":"Move a product, idea or format into an unexpected place or moment. Use it when a new setting would change how people read it. Not Transplant, which moves a method between fields.","examples":[["Advertising","Absolut Vodka (1980s)","Put the bottle shape into art, fashion and city scenes; Warhol painted one in 1985."],["Film","Romeo + Juliet (1996)","Kept Shakespeare's text but moved it to a modern city with guns."],["Retail","Apple Store","Sells computers in open, gallery-like stores instead of electronics shops."],["Art","Banksy's Walled Off Hotel","A hotel built facing the West Bank barrier."],["Art","Duchamp's Fountain (1917)","A urinal moved into a gallery became art."]],"summary":"Move something into a new context."},{"symbol":"Rt","name":"Retime","row":1,"column":5,"summary":"Change when it happens, or how fast.","description":"Change when something is released, or how fast it runs. Use it when timing is the cheapest source of attention. Not Resequence, which changes the order inside the work.","examples":[["Advertising","Oreo 'Dunk in the Dark' (2013)","Posted a tweet within minutes of the Super Bowl blackout."],["Advertising","KFC 'FCK' (2018)","Ran a full-page apology while UK restaurants were out of chicken."],["Media","House of Cards (2013)","Netflix released a full season at once."],["TV","NRK Slow TV (2009)","Norway's broadcaster aired a seven-hour train journey in real time."],["Film","Boyhood (2014)","Richard Linklater shot it over 12 years with the same cast."]]},{"symbol":"To","name":"Take over","row":1,"column":6,"summary":"Fill every touchpoint in a place or moment.","description":"Fill every touchpoint of a place, event or media window. Use it when presence at scale is the message. Not Magnify, which enlarges a single detail.","examples":[["Advertising","Tide 'It's a Tide Ad' (2018)","Tide spots spread through the Super Bowl broadcast by imitating other ads."],["Culture","Taylor Swift's Eras Tour (2023)","Several US host cities, such as Glendale, Arizona, temporarily renamed themselves in honour of the tour."],["Art","Dismaland (2015)","Banksy turned a closed English seaside resort into a dystopian theme park."],["Art","The Gates (2005)","Christo and Jeanne-Claude lined Central Park's paths with 7,503 saffron-coloured gates."],["Art","The Weather Project (2003)","Olafur Eliasson filled Tate Modern's Turbine Hall with an artificial sun and mist, drawing about two million visitors."]]},{"symbol":"Cp","name":"Counter-place","row":1,"column":7,"summary":"Show up inside a rival's place or moment, doing the opposite.","description":"Enter a setting someone else owns to make a point against it. Use it when a rival's or institution's stage can carry your argument. Not Relocate, which moves something into a new setting.","examples":[["Art","Guerrilla Girls (1985)","Anonymous activists posted statistics around New York galleries and museums showing how few women artists they exhibited."],["Art","Banksy at Sotheby's (2018)","A framed painting shredded itself just after it sold at auction."],["Advertising","Nike at Atlanta 1996","Nike built a presence near the Olympic stadium while Reebok was the official sponsor."],["Advertising","Virgin Atlantic and British Airways (1999)","Flew an airship over BA's stalled London Eye with a cheeky message."],["Activism","Greenpeace and Lego (2014)","A Greenpeace film parodying The Lego Movie targeted Lego's Shell partnership; Lego ended it months later."]]},{"symbol":"Po","name":"Port","row":1,"column":8,"summary":"Carry an idea from one medium or platform to another.","description":"Rebuild an idea for another medium or platform, keeping its logic. Use it when the idea is bigger than its first home. Not Translate, which converts information into another sense.","examples":[["Music","Fortnite's Travis Scott concert (2020)","A live concert rebuilt as an in-game event, with more than 12 million players watching live."],["Media","TED Talks online (2006)","Putting conference talks online turned a small event into a global platform."],["Education","Open University (1971)","Brought university lectures to a mass audience through BBC broadcasts."],["Games","Tetris on Game Boy (1989)","Moved a computer puzzle game to a handheld console and sold more than 35 million copies."],["Film","Marvel Cinematic Universe (2008)","Moved comic-book characters and crossovers into a connected film universe, beginning with Iron Man."]]},{"symbol":"Oc","name":"Occasion","row":1,"column":9,"summary":"Turn an idea into a date people expect.","description":"Create a recurring moment that returns on a schedule and develops its own habits. Use it to bring attention back without paying for it each time. Not Echo, which repeats a detail inside a work.","examples":[["Culture","Earth Day (1970)","Senator Gaylord Nelson helped organise a national teach-in on 22 April that drew millions of Americans."],["Retail","Record Store Day (2008)","An annual day for independent record shops, with exclusive releases to bring people in."],["Activism","Giving Tuesday (2012)","A day of giving after Black Friday and Cyber Monday, started by the 92nd Street Y."],["Advertising","Dry January (2013)","A UK campaign made January a month without alcohol."],["Retail","Singles' Day (2009)","A 1990s student joke at Nanjing University that Alibaba turned into the world's largest shopping event."]]},{"symbol":"Gr","name":"Graft","row":2,"column":0,"description":"Borrow the format or mechanics of something familiar and put your content into it. Use it when the format already does the explaining. Not Blend, which merges materials.","examples":[["Advertising","Blendtec 'Will It Blend?' (2006)","Turned a product demo into a game-show format by blending iPhones and golf balls."],["Advertising","Honda 'Cog' (2003)","Used a Rube Goldberg chain-reaction format on Accord parts."],["Media","The Onion","Satire written in the format of a news wire."],["Media","Serial (2014)","Used weekly investigative-journalism structure to follow one criminal case."],["Theatre","Hamilton","Retells US history inside a Broadway musical using hip-hop."]],"summary":"Attach a working structure from one thing onto another."},{"symbol":"Dc","name":"Decompose","row":2,"column":1,"description":"Break something into its components and relationships. Use it to find which part is the real problem, value or cost. Not Fragment, which splits an asset into usable pieces.","examples":[["Business","Moneyball (Oakland A's, 2002)","Treated players as bundles of stats and bought undervalued ones, such as on-base percentage."],["Brand","Everlane","Shows the material, labour and transport costs plus markup for each product."],["Sport","British Cycling","Dave Brailsford broke racing into many small factors, from tyres to pillows, and improved each by 1%."],["Strategy","The milkshake study","Researchers asked why people buy a milkshake and found commuters used it to relieve a boring drive."],["Food","Ferran Adrià","At elBulli he split classic dishes into parts and reassembled them in new forms."]],"summary":"Take a system apart to see its parts and relationships."},{"symbol":"In","name":"Insert","row":2,"column":2,"summary":"Add a new part, character or beat to a structure.","description":"Add one new part, such as a twist, character or section, to an existing structure. Use it when the structure is sound but predictable. Not Combine, which joins two existing things.","examples":[["Music","Beethoven's Ninth (1824)","Added a choir and soloists to the final movement of a symphony, a form that had been purely instrumental."],["Literature","Professor Moriarty (1893)","Conan Doyle invented him in 'The Final Problem' as an opponent strong enough to end the Sherlock Holmes series."],["Music","De La Soul, 3 Feet High and Rising (1989)","Inserted game-show skits between the songs of a hip-hop album."],["Games","Atari's Adventure (1980)","Warren Robinett hid a secret room bearing his name, one of the first widely known Easter eggs."],["Advertising","Pepsi Max 'Uncle Drew' (2012)","NBA star Kyrie Irving played a disguised old man in street pickup games, a hidden twist that later inspired a feature film."]]},{"symbol":"Om","name":"Omit","row":2,"column":3,"description":"Leave out a structural part but keep enough evidence for the audience to infer it. Use it when involvement matters more than completeness. Not Withhold, which delays the key information and then delivers it.","examples":[["Film","Jaws","The mechanical shark barely worked, so the film showed it rarely; the omission raised tension."],["Literature","Hemingway","His iceberg theory: leave the most important facts unstated and let the story imply them."],["Advertising","Apple '1984'","The Macintosh never appears on screen. The ad tells a story and names the product only in text."],["Film","Psycho (1960)","The shower scene is built from quick cuts; the knife never visibly enters skin."],["Film","Alien (1979)","The creature appears only in short glimpses, so audiences imagine the rest."]],"summary":"Leave out a part and let people infer it."},{"symbol":"Rk","name":"Recast","row":2,"column":4,"description":"Keep a known structure and change who or what plays the roles. Use it to show what the original arrangement was about. Not Flip roles, which reverses who does what to whom.","examples":[["Film","The Lion King","Hamlet's plot with lions."],["Film","Clueless (1995)","Jane Austen's Emma retold with teenagers in Beverly Hills."],["Film","West Side Story","Romeo and Juliet with rival New York gangs."],["TV","Sherlock (BBC)","Holmes and Watson in modern London with phones and blogs."],["Advertising","Dove Real Beauty (2004)","Used ordinary women instead of models in beauty advertising."]],"summary":"Keep the structure, change who plays the roles."},{"symbol":"Rq","name":"Resequence","row":2,"column":5,"description":"Change the order in which events happen or are revealed inside the work. Order controls cause, tension and what the audience looks for. Not Reverse order, which changes the sequence of steps in a process.","examples":[["Film","Pulp Fiction (1994)","Told out of order, so a character who dies mid-film appears alive at the end."],["TV","Columbo","Shows the murder first, so the interest is how he catches the killer."],["Film","Memento (2000)","Scenes run in reverse so viewers share the lead's memory loss."],["Strategy","Amazon 'working backwards'","Teams write the press release first, then build the product."],["Education","Backward design","Teachers define the assessment first, then plan lessons to reach it."]],"summary":"Keep the parts, change the order."},{"symbol":"Rn","name":"Repeat","row":2,"column":6,"description":"Multiply one unit within a work until a pattern or rhythm appears. Use it to build recognition or a larger structure from simple pieces. Not Echo, which brings a detail back later.","examples":[["Art","Warhol's soup cans (1962)","32 canvases, one for each Campbell's flavour, repeating a single mass-produced image."],["Music","Steve Reich, Piano Phase","Two players repeat one phrase at slightly different speeds."],["Product","LEGO","One standard brick, repeated, builds almost anything."],["Advertising","Budweiser 'Wassup' (1999)","One catchphrase repeated across a run of ads and parodies."],["Architecture","Habitat 67","Moshe Safdie stacked identical prefab concrete units into an apartment complex in Montreal."]],"summary":"Repeat a part until a pattern appears."},{"symbol":"Fl","name":"Flip roles","row":2,"column":7,"description":"Swap who leads, serves, watches or teaches in a relationship, such as customer and expert. Use it to find ideas hidden in the default roles. Not Recast, which changes who plays the parts.","examples":[["Advertising","Domino's Turnaround (2010)","Showed real customer complaints and had the company respond to them in public."],["Product","LEGO Ideas","Fans submit designs; at 10,000 votes LEGO reviews them for production."],["Science","The IKEA effect","Studies show people value furniture more when they assemble it themselves."],["Business","Threadless (2000)","Customers submit and vote on t-shirt designs, and the winners go into production."],["Education","Flipped classroom","Students watch lectures at home and do the exercises in class with the teacher."]],"summary":"Reverse who leads, serves, watches or teaches."},{"symbol":"An","name":"Analogize","row":2,"column":8,"description":"Carry over how something works in one field to solve a problem in another. Use it when your own field has run out of ideas. Not Metaphor, which is a way of seeing, or Transplant, which carries a method.","examples":[["Engineering","Velcro","George de Mestral studied burrs sticking to his dog and copied the hook-and-loop mechanism."],["Engineering","Shinkansen 500","Eiji Nakatsu shaped the nose like a kingfisher's beak to reduce tunnel boom."],["Architecture","Eastgate Centre, Harare","Cooling is modelled on how termite mounds regulate temperature."],["Science","Slime mould","In a 2010 study, slime mould grew networks similar to the Tokyo rail system."],["Science","Bohr model","Pictured electrons orbiting the nucleus like planets around the sun."]],"summary":"Borrow a pattern from another system to solve this one."},{"symbol":"Ns","name":"Nest","row":2,"column":9,"description":"Embed a story, system or image inside another of the same kind. Use it when the inner and outer levels can comment on each other. Not Recurse, which applies a rule to its own output.","examples":[["Film","Inception (2010)","Dreams inside dreams, each level running at a different speed."],["Film","The Grand Budapest Hotel","A story inside a story inside a story, told across three time periods."],["Literature","One Thousand and One Nights","Scheherazade's tales contain characters who tell their own tales."],["Packaging","Droste cocoa tin","The tin shows a nurse holding a tin showing the same image."],["Advertising","La Vache qui rit","The cow on the pack wears earrings that are boxes of the same cheese."]],"summary":"Put one version of a structure inside another."},{"symbol":"Cl","name":"Collide","row":3,"column":0,"description":"Put two things from different worlds in one frame and use the friction. Use it when neither context alone shows the insight. Not Blend, which fuses materials.","examples":[["Advertising","Always #LikeAGirl (2014)","Set 'like a girl' as an insult against real athletic ability to change the phrase's meaning."],["Advertising","Old Spice 'The Man Your Man Could Smell Like' (2010)","Parodied macho cologne ads, aimed at women who buy body wash for men."],["Literature","Freakonomics (2005)","Applies economics to crime, cheating and parenting."],["TV","Archer","A spy thriller set inside a petty office workplace."],["Film","Barbie (2023)","A toy-brand film that questions what the doll means."]],"summary":"Bring two incompatible contexts together."},{"symbol":"Sp","name":"Split view","row":3,"column":1,"description":"Show the same event through different people's accounts. Use it when the disagreement is the insight. Not Upend the view, which uses only the overlooked viewpoint.","examples":[["Film","Rashomon (1950)","Four witnesses give conflicting accounts of one crime."],["Advertising","Dove Real Beauty Sketches (2013)","Compared how women described themselves with how strangers described them."],["Literature","Gone Girl","Alternates between two narrators with conflicting accounts."],["Advertising","The Guardian 'Points of View' (1986)","One street incident filmed from three angles, giving three readings."],["Advertising","Apple 'Get a Mac' (2006)","Two characters, PC and Mac, gave each product a personality by contrast."]],"summary":"Show one situation from separate viewpoints."},{"symbol":"Gl","name":"Gloss","row":3,"column":2,"summary":"Add commentary that changes how something is read.","description":"Add a caption, voice-over or note to existing content so it reads differently. Use it when the content is fixed but its meaning isn't. Not Layer, which adds sensation.","examples":[["TV","Mystery Science Theater 3000 (1988)","Hosts and robots riff over bad B-movies from silhouettes at the bottom of the screen."],["TV","Pop-Up Video (1996)","VH1 overlaid trivia bubbles on music videos."],["Film","Criterion commentary tracks (1984)","Criterion's King Kong laserdisc added a historian's commentary track, creating the commentary extra."],["Technology","Genius (2009)","Rap Genius let readers annotate lyrics line by line."],["Technology","Community Notes (2021)","X's contributors add context beneath posts; a note shows only when raters with differing views find it helpful."]]},{"symbol":"Wh","name":"Withhold","row":3,"column":3,"description":"Delay or hide the key information so the audience keeps guessing. Use it to hold attention; it fails if people can't follow. Not Omit, which leaves a part out for good.","examples":[["Film","Inception","Cuts to black while the top is still spinning, leaving the ending open."],["Advertising","Cadbury 'Gorilla' (2007)","A gorilla plays a drum solo for most of 90 seconds before the product appears."],["TV","The Sopranos finale (2007)","Cuts to black mid-scene without showing the outcome."],["Advertising","Cloverfield teaser (2008)","The trailer didn't show the film's title or the monster."],["Advertising","The Blair Witch Project (1999)","Marketing left it unclear whether the footage was real."]],"summary":"Hold back the information that settles the meaning."},{"symbol":"Rm","name":"Rename","row":3,"column":4,"summary":"Give it a different name and it becomes a different thing.","description":"Change the label so people read the thing differently, without changing the thing. Use it when the name carries the problem. Not Metaphor, which explains one thing through another.","examples":[["Food","Chilean sea bass (1977)","An importer renamed Patagonian toothfish, and it became a menu staple."],["Food","Canola (1978)","Canadian rapeseed oil was renamed to shed an unappealing name."],["Business","Windscale to Sellafield (1981)","The UK nuclear site was renamed after the 1957 fire."],["Culture","Spastics Society to Scope (1994)","A UK disability charity dropped an outdated name that had become a playground insult."],["Food","Dried plums (2000)","US regulators approved 'dried plums' as an alternative name to 'prunes'."]]},{"symbol":"Pr","name":"Reprioritize","row":3,"column":5,"description":"Promote a normally minor element of the work to the main position. Use it when the usual selling point is the same across the category. Not Put first, which reorders goals.","examples":[["Advertising","Avis 'We Try Harder' (1962)","Admitted being number two and made it the pitch."],["Advertising","Guinness 'Good things come to those who wait'","Turned the slow pour from a flaw into the selling point."],["Advertising","Stella Artois 'Reassuringly Expensive'","Made the high price part of the quality signal."],["Advertising","Skoda 'It's a Skoda. Honest.' (2000)","Turned the brand's poor reputation into the headline of its UK campaign."],["Literature","Pale Fire (1962)","Nabokov's novel is told through a poem and a commentator's footnotes."]],"summary":"Promote a secondary part to the main position."},{"symbol":"Zm","name":"Zoom","row":3,"column":6,"description":"Change the scale of view: a detail, a person, a system or a time span. Use it when a different level would change what the problem is. Not Magnify, which enlarges a detail.","examples":[["Film","Powers of Ten (1977)","Eames's film shows one scene at scales from the galaxy to the atom."],["Advertising","Apple 'Shot on iPhone' (2015)","Moved the focus from phone specs to photos taken by users."],["Media","Humans of New York","Photographs strangers with short personal quotes, one person at a time."],["Healthcare","John Snow's cholera map (1854)","Plotting deaths on a map located the infected water pump."],["Advertising","Dove 'Evolution' (2006)","Zoomed into hours of retouching on one model in 75 seconds."]],"summary":"Change the scale you look at: detail, person, system or time."},{"symbol":"Up","name":"Upend the view","row":3,"column":7,"description":"Tell the story or analyse the problem from the side that is normally overlooked. Use it to find an insight the default view hides. Not Split view, which shows several viewpoints.","examples":[["Literature","Wide Sargasso Sea (1966)","Retells Jane Eyre from the view of Bertha, the 'madwoman'."],["Theatre","Wicked","The Wizard of Oz told from the witch's point of view."],["Theatre","Rosencrantz and Guildenstern Are Dead","Hamlet seen through two minor characters."],["Healthcare","GE Adventure Series MRI","Doug Dietz redesigned scanner rooms as pirate ships after seeing them from a frightened child's view."],["Design","IDEO shopping cart (1999)","Designers watched shoppers and store staff before redesigning the cart."]],"summary":"Use the viewpoint that is usually ignored."},{"symbol":"Mt","name":"Metaphor","row":3,"column":8,"description":"Describe something as a familiar thing so people grasp it fast. Use it when the real thing is abstract or new. Not Analogize, which carries over how something works.","examples":[["Technology","The desktop","Files, folders and a trash can made computer storage understandable."],["Advertising","Red Bull 'Gives you wings'","A metaphor for energy that needs no functional claim."],["Technology","The cloud","Network diagrams drew the internet as a cloud; the term made remote servers sound simple."],["Strategy","Blue Ocean","Kim and Mauborgne compared crowded markets to red oceans and open space to blue ones."],["Advertising","Esso 'Put a tiger in your tank'","Used a tiger to stand for fuel power in 1960s ads."]],"summary":"Use one thing as a mental model for another."},{"symbol":"Sf","name":"Self-reference","row":3,"column":9,"description":"Refer to the medium, the audience or the making of the work. Use it when audiences are sceptical of the format. Not Nest, which embeds one version of a structure in another.","examples":[["Advertising","Wendy's on Twitter","The brand roasts users and rivals, openly playing the brand-account game."],["Advertising","Dollar Shave Club (2012)","The founder joked about the company's size and budget in the launch video."],["Advertising","Sprite 'Obey Your Thirst' (1994)","Mocked celebrity-driven soft drink advertising."],["Film","Deadpool","The lead talks to the camera about the film and its budget."],["Literature","Gödel, Escher, Bach (1979)","Hofstadter's book is built with structures that refer to themselves."]],"summary":"Make the work acknowledge it is an ad."},{"symbol":"Mg","name":"Merge rulebooks","row":4,"column":0,"description":"Fuse the operating rules of two categories or games. Use it to create a new category with its own logic. Not Pair, which links channels without creating a new category.","examples":[["Sport","Chess boxing","Rounds alternate between chess and boxing; you win by checkmate or knockout."],["Business","Peloton","Combined gym classes with streaming media and subscription rules."],["Business","Red Bull Media House","A drink company that also runs as a media producer."],["Product","Duolingo","Language learning built on game rules: streaks, points and leagues."],["Advertising","Pokémon Go (2016)","Combined real-world walking with game rules, including sponsored locations."]],"summary":"Combine two rule systems so both shape the outcome."},{"symbol":"Fk","name":"Fork","row":4,"column":1,"description":"Split from an existing system, change one rule and keep the rest. Use it to test a second direction or to serve the segment the main version ignores. Not Unbundle, which sells parts of an offer separately.","examples":[["Technology","LibreOffice (2010)","Developers forked OpenOffice after Oracle took control."],["Music","Punk","Split from 1970s rock by rejecting technical skill and long songs."],["Advertising","Liquid Death","Water sold with heavy-metal branding, forked away from 'wellness' water."],["Business","Craft beer","Small brewers split from mass lager with different rules on ingredients and scale."],["Games","DotA","Began as a Warcraft III mod and became its own game genre."]],"summary":"Branch one thing into versions with different rules."},{"symbol":"Im","name":"Impose","row":4,"column":2,"summary":"Add a rule or limit to how the work is made.","description":"Set a constraint before starting, such as a banned letter, a word limit or a time limit. Use it to force ideas that freedom wouldn't produce. Not Break a rule, which removes one.","examples":[["Literature","Perec's La Disparition (1969)","Wrote a full novel without the letter 'e'."],["Film","Dogme 95","Directors signed a vow banning added music, lighting and props."],["Technology","Twitter's 140 characters (2006)","A hard text limit, inherited from SMS, shaped a whole style of writing."],["Literature","Green Eggs and Ham (1960)","Dr. Seuss wrote it on a bet with his publisher to use only 50 different words."],["Film","The Five Obstructions (2003)","Lars von Trier set Jørgen Leth five rules for remaking one short film, such as no shot longer than 12 frames."]]},{"symbol":"Bk","name":"Break a rule","row":4,"column":3,"description":"Name a rule everyone follows, then remove it. Use it to find openings competitors ignore because that's how it's done. Not Anti-rule, which requires the opposite.","examples":[["Music","Radiohead, In Rainbows (2007)","Let fans pay whatever they wanted for the download."],["Business","Netflix late fees (2000)","Dropped due dates and late fees, a big source of Blockbuster's profit."],["Retail","Warby Parker","Dropped the in-store try-on rule by shipping five frames to try at home."],["Music","Beyoncé (2013)","Released an album with no promotion or announcement."],["Sport","Fosbury Flop (1968)","Dick Fosbury ignored the standard straddle technique and cleared the high jump bar backwards, winning Olympic gold."]],"summary":"Drop one existing rule and see what becomes possible."},{"symbol":"Rp","name":"Replace a rule","row":4,"column":4,"description":"Swap a governing rule, such as who pays, who decides or what counts as winning. Use it to change behaviour without changing the product. Not Substitute, which swaps a component.","examples":[["Games","Pandemic (2008)","Players win or lose together against the game."],["Business","Costco","Earns most of its profit from membership fees, not product margins."],["Business","Kickstarter","Projects get no money unless they hit their full funding goal."],["Business","Gillette","Sells the razor cheaply and makes the profit on blades."],["Product","Tinder","Swiping replaced searching profiles, and messaging requires mutual interest."]],"summary":"Swap one rule for another and the system reorganises."},{"symbol":"Rv","name":"Reverse order","row":4,"column":5,"description":"Change when a step happens in a process: pay after, review after, decide first. Use it to remove a barrier at the start. Not Resequence, which orders events inside a work.","examples":[["Retail","Zappos","Free shipping and returns let customers try first and decide after."],["Business","Spotify free tier","People use the product first and pay later."],["Technology","Wikipedia","Pages publish immediately and are reviewed afterwards."],["Food","Panera Cares (2010)","Customers ate first and paid whatever they chose."],["Product","Tesla Model 3 (2016)","Took reservations before the car was built, using demand to fund production."]],"summary":"Reverse the normal order of a procedure."},{"symbol":"Xt","name":"Push to extreme","row":4,"column":6,"description":"Take one variable, such as length, size, price or speed, to zero or its maximum. Use it to expose assumptions about what is necessary. Not Magnify, which enlarges one detail.","examples":[["Advertising","Blendtec 'Will It Blend?'","Tested the blender on iPhones and golf balls to prove durability."],["Advertising","Red Bull Stratos (2012)","Felix Baumgartner jumped from 39 km up, taking 'gives you wings' to its limit."],["Retail","IKEA flat-pack","Shipping furniture flat cut transport costs and damage."],["Film","Victoria (2015)","A feature shot in one continuous 138-minute take."],["Retail","Aldi","Stocks roughly 1,500 core items against 30,000 or more in a typical supermarket."]],"summary":"Push one parameter to its limit."},{"symbol":"Ax","name":"Anti-rule","row":4,"column":7,"description":"Turn a prohibition into a requirement. Use it when the opposite of the norm is something audiences secretly want. Not Break a rule, which only drops the rule.","examples":[["Advertising","Marmite 'Love it or hate it' (1996)","Embraced the polarising taste instead of hiding it."],["Design","Wabi-sabi","A Japanese aesthetic that values imperfection and age."],["Art","Kintsugi","Repairs broken pottery with gold so the crack is visible."],["Retail","Lush","Sells many products with no packaging at all."],["Brand","Patagonia Worn Wear (2013)","Repairs and resells used clothing instead of only selling new."]],"summary":"Require the opposite of what the rules normally say."},{"symbol":"Tp","name":"Transplant","row":4,"column":8,"description":"Take a proven method from one industry and apply it in yours, keeping the logic and adapting the rest. Use it when another field has already solved your process problem. Not Borrow the answer, which copies a whole solution to the same job.","examples":[["Business","Toyota","Taiichi Ohno modelled just-in-time restocking on supermarket shelves."],["Technology","Kanban","Toyota's workflow cards became a method for software teams."],["Healthcare","WHO surgical checklist (2008)","Adapted from aviation; a study led by Atul Gawande found fewer complications and deaths."],["Business","Uber surge pricing","Applied airline and hotel dynamic pricing to taxis."],["Advertising","Obama 2008 campaign","Used A/B testing on its sign-up page, raising sign-ups by about 40%."]],"summary":"Move a working rule or method from another field."},{"symbol":"Re","name":"Recurse","row":4,"column":9,"description":"Apply a rule to its own output, again and again, so simple rules produce complex results. Use it for systems that must scale or vary. Not Feedback, which loops results back to change the goal.","examples":[["Science","Conway's Game of Life (1970)","A few simple rules applied repeatedly produce gliders and complex patterns."],["Design","MIT Media Lab identity (2011)","One rule generated a different logo for every person and group."],["Literature","Oulipo","Writers used rules such as dropping a letter; Perec wrote a novel without the letter 'e'."],["Science","Mandelbrot set","One formula applied to its own result produces endless detail."],["Technology","Google PageRank","A page's rank depends on the ranks of the pages that link to it."]],"summary":"Apply the same rule to its own output, repeatedly."},{"symbol":"Un","name":"Unite purposes","row":5,"column":0,"description":"Design one action to serve two purposes for two parties. Use it when you can't fund separate efforts for each goal. Not Extend, which keeps one job and adds another.","examples":[["Advertising","Nike+ (2006)","The ad doubled as a running tracker made with Apple."],["Advertising","Whopper Detour (2018)","A promotion that drove app downloads by offering a 1-cent Whopper near McDonald's."],["Advertising","The Lego Movie (2014)","A feature film that also sold the product line."],["Brand","TOMS One for One","Each pair sold funded a donated pair."],["Advertising","Charmin SitOrSquat (2008)","A public-toilet finder app that doubled as brand advertising."]],"summary":"Make one action serve two purposes at once."},{"symbol":"Ub","name":"Unbundle","row":5,"column":1,"description":"Separate things that are packaged together and let people take only what they need. Use it to find the part customers value most. Not Fork, which changes a rule.","examples":[["Music","iTunes (2003)","Sold songs for 99 cents instead of full albums."],["Business","Ryanair","Sells the seat alone; bags, seat choice and meals cost extra."],["Technology","Craigslist","Pulled classified ads out of newspapers, which had relied on them for revenue."],["Business","Airbnb","Unbundled a room from a hotel."],["Finance","Wise","Unbundled international money transfers from bank accounts at lower fees."]],"summary":"Offer one benefit without the rest of the bundle."},{"symbol":"Ex","name":"Extend","row":5,"column":2,"summary":"Add a new job to what the offer already does.","description":"Widen the purpose to cover a need, audience or use the offer didn't serve. Use it when existing capability fits a nearby problem. Not Repurpose, which gives a thing a different job.","examples":[["Advertising","AXA 'Three Words' (2025)","Extended home insurance's emergency relocation cover to people fleeing domestic violence by adding three words to the policy wording."],["Business","Michelin Guide (1900)","The tyre maker published a free guide to garages, hotels and restaurants to get drivers travelling more."],["Business","M-Pesa (2007)","Safaricom added money transfer to its network of airtime agents in Kenya, reaching people without bank accounts."],["Business","Amazon Prime (2005)","Began as free two-day shipping and later extended to video, music and more under one subscription."],["Business","UK Post Office Savings Bank (1861)","Added savings accounts to the existing post office network so ordinary people could save."]]},{"symbol":"Ab","name":"Abandon function","row":5,"column":3,"description":"Let a product stop doing its expected task and see what remains valuable. Use it when function is a commodity but meaning isn't. Not Strip, which removes features.","examples":[["Product","Pet Rock (1975)","A product with no function sold more than a million units as a novelty."],["Product","Mechanical watches","Became luxury objects after cheap quartz watches did the job better."],["Product","Vinyl records","Revived as ritual and collectible despite digital convenience."],["Art","Cattelan's Comedian (2019)","A banana taped to a wall sold for $120,000 at Art Basel Miami."],["Advertising","Subservient Chicken (2004)","Burger King's site let people type commands to a person in a chicken suit."]],"summary":"Stop using something for its original job."},{"symbol":"Rr","name":"Repurpose","row":5,"column":4,"description":"Give something built for one purpose a different job. Use it to find new markets for assets you already have. Not Extend, which keeps the original job.","examples":[["Product","Play-Doh","Originally a wallpaper cleaner; became a children's toy in the 1950s."],["Product","Listerine","Developed as a surgical antiseptic; marketed as mouthwash from the 1920s."],["Product","Post-it","3M's weak adhesive was a failure until it was used for notes and bookmarks."],["Product","Viagra","Developed as a heart drug and found a different main use."],["Advertising","Arm & Hammer (1972)","Marketed baking soda as a fridge deodoriser."]],"summary":"Give an existing thing a different job."},{"symbol":"Pt","name":"Put first","row":5,"column":5,"description":"Make a goal usually treated as secondary the first test everything must pass. Use it to differentiate where products look alike. Not Reprioritize, which promotes a minor element of the work.","examples":[["Brand","Tony's Chocolonely","Starts from ending slavery in cocoa farming, then makes chocolate."],["Brand","Patagonia","Environmental impact leads product decisions."],["Advertising","Apple privacy ads","Make privacy the lead feature: 'Privacy. That's iPhone.'"],["Product","Volvo","Built its brand on safety, including giving away the three-point seatbelt patent in 1959."],["Brand","Ben & Jerry's","Its social mission is part of the company's charter."]],"summary":"Make a secondary goal the first condition."},{"symbol":"Am","name":"Raise ambition","row":5,"column":6,"description":"Define success at a larger scale, over a longer time or for more people. Use it to change what the brand is allowed to do. Not Magnify, which enlarges a detail.","examples":[["Science","Human Genome Project (1990)","Set out to sequence the entire human genome, a goal that seemed out of reach at the time."],["Business","Google","Mission: organise the world's information."],["Education","Khan Academy","Aims to give anyone free world-class education."],["Science","Apollo","In 1961 Kennedy set the goal of landing a person on the Moon within the decade."],["Advertising","Dove Self-Esteem Project","Moved from selling soap to educating young people about self-esteem."]],"summary":"Define success at a larger scale."},{"symbol":"Ag","name":"Anti-goal","row":5,"column":7,"description":"Aim for less of what the category normally wants, such as less buying or less use. Use it to build trust where everyone promises more. Not Anti-rule, which reverses a rule.","examples":[["Advertising","VW 'Think Small' (1959)","Sold a small car in a market of big ones."],["Advertising","Patagonia 'Don't Buy This Jacket' (2011)","A Black Friday ad asking customers to buy less."],["Advertising","Burger King Moldy Whopper (2020)","Showed a Whopper rotting to promote having no preservatives."],["Advertising","The Economist 'I never read The Economist'","A long-running campaign using fictional readers who admitted to being behind."],["Advertising","REI #OptOutside (2015)","Closed stores on Black Friday and paid staff to go outdoors."]],"summary":"Make the opposite of the usual goal the definition of success."},{"symbol":"Bo","name":"Borrow the answer","row":5,"column":8,"description":"Define the job your product does, then copy the solution from an industry that does the same job better. Use it when your sector has no good model. Not Transplant, which borrows a method.","examples":[["Healthcare","Great Ormond Street Hospital (2004)","Studied Ferrari F1 pit crews to improve handovers after surgery."],["Retail","Apple Genius Bar","Ron Johnson borrowed the concierge model of hotels such as the Ritz-Carlton."],["Technology","The barcode","Norman Woodland adapted Morse code dots and dashes into lines."],["Business","Netflix subscription (1999)","Reed Hastings has said gym memberships inspired the subscription model after a late fee."],["Business","Opower","Borrowed social comparison from psychology by showing households how they compare with neighbours, cutting energy use."]],"summary":"Find another field with the same job and copy its solution."},{"symbol":"Fb","name":"Feedback","row":5,"column":9,"description":"Let real results change the goal, not just the execution. Use it when the original objective may be wrong. Not Recurse, which applies a rule to its own output.","examples":[["Business","Slack","Began as an internal tool at a failed game studio, Tiny Speck; the team pivoted to the tool."],["Business","Instagram","Started as Burbn, a check-in app; users mostly used photos, so the founders cut the rest."],["Business","YouTube","Started as a video-dating site before becoming general video sharing."],["Business","Twitter","Began at Odeo, a podcast platform; the team pivoted to status updates."],["Business","LEGO (2004)","After near-bankruptcy, it cut many product lines and refocused on the core brick."]],"summary":"Let real results change the goal, not just the execution."}]}</script>
+  <script>
+  (()=>{
+    'use strict';
+    const data=JSON.parse(document.getElementById('table-data').textContent);
+    const levels=data.levels,groups=data.groups;
+    // Families organise operations for navigation, not exclusive Boden categories.
+    const families=[
+      {id:'connect',name:'Connect',columns:[0,8]},
+      {id:'edit',name:'Edit',columns:[2,3,4,1]},
+      {id:'reshape',name:'Reshape',columns:[5,6,7,9]}
+    ];
+    const columns=families.flatMap(f=>f.columns);
+    const entries=levels.flatMap((_,r)=>columns.map(c=>data.entries.find(e=>e.row===r&&e.column===c)));
+    const familyFor=e=>families.find(f=>f.columns.includes(e.column));
+    const $=id=>document.getElementById(id);
+    const dialog=$('element-dialog');
+    const mobile=window.matchMedia('(max-width: 700px)'),reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
+    const tiles=[];let currentIndex=0,returnFocus=null,filtered=false,matches=entries.map((_,i)=>i),tooltipTile=null;
+    const escape=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    const palette=g=>`--tint:${g.tint};--hover:${g.hover};--accent:${g.accent}`;
+    // Editorial starting points, not predictions or exclusive classifications.
+    // Each recommendation is grounded in the element's existing definition.
+    const goals=[
+      {id:'attention',label:'Get noticed',picks:[
+        ['Rl','An unexpected setting can make a familiar thing worth a second look.'],
+        ['Ms','Make a small but telling detail large enough to command attention.'],
+        ['Cl','Put two different worlds together so their contrast becomes the idea.'],
+        ['Rt','Change the timing to catch people when the message is less expected.'],
+        ['Ng','Use a noticeable absence to interrupt the usual visual or verbal noise.'],
+        ['Wh','Hold back a key detail to give people a reason to keep looking.']
+      ]},
+      {id:'clarity',label:'Make something clear',picks:[
+        ['Mt','Use a familiar comparison to make an unfamiliar idea easier to grasp.'],
+        ['Tr','Change the format or sense to reveal a pattern people currently miss.'],
+        ['Dc','Separate the parts so people can see what does what.'],
+        ['St','Remove competing detail so the essential point comes through.'],
+        ['Gr','Borrow a familiar format that already tells people how to read the information.'],
+        ['Zm','Choose the scale of view that makes the relationship easiest to understand.']
+      ]},
+      {id:'relevance',label:'Make it matter',picks:[
+        ['Up','Start with the person or viewpoint the usual account overlooks.'],
+        ['Pl','Place the idea in a moment where the need is already present.'],
+        ['Gl','Add the context that connects existing content to a real consequence.'],
+        ['Pt','Put an overlooked audience need ahead of the category’s usual priorities.'],
+        ['Ex','Connect an existing capability to a need it does not currently serve.'],
+        ['Sp','Show different accounts to expose who experiences the issue differently.']
+      ]},
+      {id:'belief',label:'Make it believable',picks:[
+        ['Ms','Bring a real detail or proof point into view so people can inspect it.'],
+        ['Tr','Express evidence in a form people can directly see, hear or compare.'],
+        ['Dc','Show the components and relationships behind the claim.'],
+        ['Sf','Acknowledge how the work was made or presented when the format itself causes scepticism.'],
+        ['Ag','Explore whether doing less of what your category sells could demonstrate a genuine commitment.'],
+        ['Pt','Make the claimed priority a test the actual product or service must pass.']
+      ]},
+      {id:'action',label:'Encourage action',picks:[
+        ['Rv','Move a difficult step later so it stops blocking the first action.'],
+        ['Ub','Let people choose the part they need without committing to the whole offer.'],
+        ['Rp','Change who pays, decides or benefits to make a different behaviour worthwhile.'],
+        ['Oc','Give the action a recurring occasion people can return to.'],
+        ['Un','Make one action serve a useful purpose for each participant.'],
+        ['Rt','Offer the action at a moment when people are better placed to take it.']
+      ]},
+      {id:'value',label:'Create more value',picks:[
+        ['Rr','Give an existing asset a different job.'],
+        ['Ex','Use an existing capability to serve an additional need or audience.'],
+        ['Un','Find an action that solves two parties’ problems together.'],
+        ['Ub','Identify the part people value enough to choose on its own.'],
+        ['Bo','Look for another industry that already solves the same underlying job well.'],
+        ['Mg','Combine the operating rules of two categories to explore a different kind of offer.']
+      ]}
+    ];
+    const blocks=[
+      {id:'same',label:'We keep getting the same ideas',picks:[
+        ['An','Borrow how another field works to escape your usual solution patterns.'],
+        ['Im','Add a deliberate constraint that makes your default answer unavailable.'],
+        ['Fl','Reverse who leads or serves to reveal a different relationship.'],
+        ['Cl','Introduce a reference from a different world and investigate the friction.'],
+        ['Bk','Name a rule you have been accepting and try a version without it.'],
+        ['Sh','Rearrange your existing material to see relationships you have not considered.']
+      ]},
+      {id:'generic',label:'It could belong to anyone',picks:[
+        ['Pr','Build around a specific, overlooked detail instead of the category’s standard selling point.'],
+        ['Ms','Make a distinctive detail carry the idea.'],
+        ['Pl','Use a place or moment whose meaning is specific to this subject.'],
+        ['Pt','Choose a priority your offer can genuinely put ahead of the usual ones.'],
+        ['Up','Find a viewpoint that reveals something particular about this audience or subject.'],
+        ['Bl','Look for a combination of ingredients or styles that makes sense specifically here.']
+      ]},
+      {id:'complex',label:'It’s too complicated',picks:[
+        ['St','Remove detail until the central idea can carry the work.'],
+        ['Dc','Separate the parts to find what is creating the complexity.'],
+        ['Mt','Use a familiar comparison to make the underlying idea easier to understand.'],
+        ['Fr','Break the whole into smaller units people can use or understand separately.'],
+        ['Pr','Give the important element a clear lead over everything else.'],
+        ['Ub','Separate bundled functions so people only have to engage with what they need.']
+      ]},
+      {id:'irrelevant',label:'It’s interesting, but feels irrelevant',picks:[
+        ['Up','Examine the idea from the perspective of someone whose need it should serve.'],
+        ['Pl','Find a setting where the idea answers something people already care about.'],
+        ['Ex','Look for a nearby need that the idea could usefully serve.'],
+        ['Pt','Make the audience’s actual priority the first test of the idea.'],
+        ['Fb','Use real responses to reconsider whether the original objective is the right one.'],
+        ['Zm','Change the scale of view to check whether you are solving the right problem.']
+      ]},
+      {id:'proof',label:'We have a claim, but no demonstration',picks:[
+        ['Tr','Translate existing evidence into a format people can experience.'],
+        ['Ms','Focus the demonstration on a concrete detail that supports the claim.'],
+        ['Dc','Expose the parts or mechanism that explain why the claim holds.'],
+        ['Pt','Turn the claim into a practical requirement your work must visibly meet.'],
+        ['Gr','Borrow a familiar test or demonstration format for evidence you actually have.'],
+        ['Rl','Move the product into a setting where its claimed benefit becomes observable.']
+      ]},
+      {id:'develop',label:'The idea needs developing',picks:[
+        ['In','Add one new part that gives the existing structure a further possibility.'],
+        ['Po','Rebuild the idea in another medium while keeping its central logic.'],
+        ['Rq','Try a different order of reveal to change what people notice or anticipate.'],
+        ['Ec','Bring a recognisable detail back across the work to strengthen its continuity.'],
+        ['Fk','Keep the core and change one rule to explore a distinct second version.'],
+        ['Ex','Test whether the idea can serve another useful purpose without losing the original one.']
+      ]},
+      {id:'limited',label:'The constraints feel too tight',picks:[
+        ['Im','Treat the limitation as a deliberate design rule and build the idea around it.'],
+        ['Sb','Replace one component with something that can do the job within your limits.'],
+        ['Gl','Change how existing material is understood when the material itself is fixed.'],
+        ['Rr','Find a different use for an asset you already have.'],
+        ['Un','Look for one action that can do the work of two separate efforts.'],
+        ['Bo','Borrow a solution from a field that routinely works with a similar limitation.']
+      ]}
+    ];
+    const romans=['I','II','III','IV','V','VI'];
+    $('map-head').innerHTML='<tr><th aria-hidden="true"></th>'+families.map((f,i)=>`<th class="family-heading ${i?'family-gap':''}" scope="colgroup" colspan="${f.columns.length}" id="family-${f.id}"><span class="family-button">${f.name}</span></th>`).join('')+'</tr><tr><th class="corner" scope="col">Layer</th>'+columns.map((c,i)=>`<th class="operation ${[2,6].includes(i)?'family-gap':''}" id="operation-${c}" scope="col" style="${palette(groups[c])}"><strong>${escape(groups[c].name)}</strong><small>${escape(groups[c].verb)}</small></th>`).join('')+'</tr>';
+    $('map-body').innerHTML=levels.map((level,r)=>'<tr>'+`<th class="level" id="level-${r}" scope="row"><span class="roman">${romans[r]}</span><strong>${escape(level.name)}</strong><small>${escape(level.meaning)}</small></th>`+columns.map((c,displayCol)=>{
+      const index=r*10+displayCol,e=entries[index],group=groups[c],family=familyFor(e);
+      return `<td headers="level-${r} operation-${c} family-${family.id}" class="${[0,2,6].includes(displayCol)?'family-start ':''}${[2,6].includes(displayCol)?'family-gap':''}" data-family="${family.name}"><button type="button" class="element" id="tile-${e.symbol}" data-index="${index}" style="${palette(group)};--delay:${r*30+displayCol*16}ms" aria-label="${escape(e.name)}. ${escape(e.summary)} ${escape(group.name)} at the ${escape(level.name)} layer. ${family.name} group. Five examples." aria-haspopup="dialog" aria-expanded="false"><span class="number" aria-hidden="true">${String(index+1).padStart(2,'0')}</span><span class="open-mark" aria-hidden="true">↗</span><span class="symbol" aria-hidden="true">${escape(e.symbol)}</span><span class="name">${escape(e.name)}</span><span class="operation-label" aria-hidden="true">${escape(group.name)}</span></button></td>`;
+    }).join('')+'</tr>').join('');
+
+    const tooltip=$('element-tooltip');
+    function showTooltip(index,tile){
+      if(dialog.open||focusDialog.open||mobile.matches||window.matchMedia('(hover: none)').matches)return;
+      hideTooltip();
+      const e=entries[index],rect=tile.getBoundingClientRect(),width=Math.min(250,window.innerWidth-28);
+      $('tooltip-title').textContent=e.name;
+      $('tooltip-copy').textContent=e.summary;
+      tooltip.style.width=width+'px';
+      tooltip.style.left=Math.max(14,Math.min(rect.left+rect.width/2-width/2,window.innerWidth-width-14))+'px';
+      tooltip.style.top=(rect.bottom+9)+'px';
+      tooltip.dataset.visible='true';tooltip.setAttribute('aria-hidden','false');
+      tooltipTile=tile;tile.setAttribute('aria-describedby','element-tooltip');
+      requestAnimationFrame(()=>{
+        if(tooltipTile!==tile)return;
+        if(rect.bottom+9+tooltip.getBoundingClientRect().height>window.innerHeight-12)tooltip.style.top=Math.max(12,rect.top-9-tooltip.getBoundingClientRect().height)+'px';
+      });
+    }
+    function hideTooltip(){
+      tooltip.dataset.visible='false';tooltip.setAttribute('aria-hidden','true');
+      if(tooltipTile)tooltipTile.removeAttribute('aria-describedby');
+      tooltipTile=null;
+    }
+    function highlight(index){
+      document.querySelectorAll('.is-related').forEach(el=>el.classList.remove('is-related'));
+      if(index===null)return;
+      $('operation-'+entries[index].column).classList.add('is-related');
+      $('level-'+entries[index].row).classList.add('is-related');
+    }
+    const focusDialog=$('focus-dialog'),trigger=$('open-focus');
+    const emptyFocus=()=>({route:'brief',goal:'',block:'',explore:[]});
+    let applied=emptyFocus(),draft=emptyFocus(),reasons=new Map(),filterOpener=trigger;
+    const copyFocus=value=>({...value,explore:[...value.explore]});
+    const symbolIndex=new Map(entries.map((e,i)=>[e.symbol,i]));
+    function drawExplore(exclude=[]){
+      const start=Math.floor(Math.random()*families.length);
+      return levels.map((_,r)=>{
+        const family=families[(r+start)%families.length];
+        const pool=entries.filter(e=>e.row===r&&family.columns.includes(e.column)&&!exclude.includes(e.symbol));
+        return pool[Math.floor(Math.random()*pool.length)].symbol;
+      });
+    }
+    function recommendations(state){
+      if(state.route==='explore')return state.explore.map(symbol=>({index:symbolIndex.get(symbol),reasons:[`A different starting point at the ${levels[entries[symbolIndex.get(symbol)].row].name.toLowerCase()} layer. ${entries[symbolIndex.get(symbol)].summary}`]}));
+      const profiles=[goals.find(g=>g.id===state.goal),blocks.find(b=>b.id===state.block)].filter(Boolean);
+      const candidates=new Map();
+      profiles.forEach(profile=>profile.picks.forEach(([symbol,reason],rank)=>{
+        if(!candidates.has(symbol))candidates.set(symbol,{index:symbolIndex.get(symbol),reasons:[],score:0});
+        const item=candidates.get(symbol);item.reasons.push(reason);item.score+=6-rank;
+      }));
+      // Prefer shared recommendations, then balance the strongest suggestions
+      // from each need. Scores are ordering heuristics, not confidence estimates.
+      return [...candidates.values()].sort((a,b)=>(b.reasons.length-a.reasons.length)||(b.score-a.score)).slice(0,6);
+    }
+    function focusLabel(state){
+      if(state.route==='explore')return 'Exploring the map';
+      return [goals.find(g=>g.id===state.goal)?.label,blocks.find(b=>b.id===state.block)?.label].filter(Boolean).join(' · ');
+    }
+    function applyFilters(){
+      const picks=recommendations(applied);
+      filtered=picks.length>0;
+      matches=filtered?picks.map(p=>p.index):entries.map((_,i)=>i);
+      reasons=new Map(picks.map(p=>[p.index,p.reasons]));
+      tiles.forEach((tile,i)=>{
+        tile.classList.toggle('is-muted',filtered&&!reasons.has(i));
+        tile.classList.toggle('is-match',filtered&&reasons.has(i));
+      });
+      groups.forEach((_,c)=>$('operation-'+c).classList.toggle('is-muted',filtered&&!matches.some(i=>entries[i].column===c)));
+      levels.forEach((_,r)=>$('level-'+r).classList.toggle('is-muted',filtered&&!matches.some(i=>entries[i].row===r)));
+      trigger.classList.toggle('has-focus',filtered);
+      trigger.setAttribute('aria-label',filtered?'Change focus. Six starting points highlighted.':'Find a starting point');
+      $('focus-summary').hidden=!filtered;
+      $('focus-summary-copy').textContent=filtered?'6 starting points · '+focusLabel(applied):'';
+      $('reshuffle-focus').hidden=applied.route!=='explore';
+      $('focus-announcement').textContent=filtered?'Six starting points highlighted for '+focusLabel(applied)+'. Other elements remain available.':'All 60 elements available.';
+      hideTooltip();
+    }
+    function updateDraftStatus(){
+      const picks=recommendations(draft);
+      $('apply-focus').disabled=picks.length===0;
+      $('apply-focus').innerHTML=draft.route==='explore'?'Show me six moves <span aria-hidden="true">↗</span>':'Highlight six moves <span aria-hidden="true">↗</span>';
+    
+      const other=draft.route==='brief'?blocks.find(b=>b.id===draft.block):goals.find(g=>g.id===draft.goal);
+      $('refine-summary').textContent=other?other.label:draft.route==='brief'?'Add where you’re stuck':'Add what needs to happen';
+      $('refine-focus').querySelector('.optional').textContent=other?'Selected':'Optional';
+      $('clear-focus').disabled=!filtered&&!draft.goal&&!draft.block&&draft.route!=='explore';
+    }
+    function renderDraft(){
+      document.querySelectorAll('[data-route]').forEach(button=>{
+        const active=button.dataset.route===draft.route;
+        button.setAttribute('aria-selected',String(active));button.tabIndex=active?0:-1;
+      });
+      $('route-panel').setAttribute('aria-labelledby','route-'+draft.route);
+      const explore=draft.route==='explore',brief=draft.route==='brief';
+      $('need-fieldset').hidden=explore;$('explore-intro').hidden=!explore;$('refine-focus').hidden=explore;
+      if(!explore){
+        $('need-question').textContent=brief?'What needs to happen?':'Where are you stuck?';
+        $('need-options').classList.toggle('is-stuck',!brief);
+        const list=brief?goals:blocks,selected=brief?draft.goal:draft.block;
+        $('need-options').innerHTML=list.map(item=>`<label class="need-choice"><input type="radio" name="primary-need" value="${item.id}" ${selected===item.id?'checked':''}><span>${escape(item.label)}</span></label>`).join('');
+        const other=brief?blocks:goals,value=brief?draft.block:draft.goal;
+        $('refine-label').textContent=brief?'Where are you stuck?':'What needs to happen?';
+        $('refine-select').innerHTML='<option value="">No additional preference</option>'+other.map(item=>`<option value="${item.id}">${escape(item.label)}</option>`).join('');
+        $('refine-select').value=value;
+        $('refine-focus').open=Boolean(value);
+      }
+      updateDraftStatus();
+    }
+    function openFocus(event){
+      filterOpener=event?.currentTarget||trigger;
+      hideTooltip();$('group-help').open=false;draft=copyFocus(applied);
+      renderDraft();focusDialog.showModal();document.body.style.overflow='hidden';
+      trigger.setAttribute('aria-expanded','true');$('focus-title').focus({preventScroll:true});
+    }
+    function closeFocus(){if(focusDialog.open)focusDialog.close()}
+    trigger.addEventListener('click',openFocus);
+    $('edit-focus').addEventListener('click',openFocus);
+    $('close-focus').addEventListener('click',closeFocus);
+    $('need-options').addEventListener('change',event=>{
+      if(!event.target.matches('input[name="primary-need"]'))return;
+      if(draft.route==='brief')draft.goal=event.target.value;else draft.block=event.target.value;
+      updateDraftStatus();
+    });
+    $('refine-select').addEventListener('change',event=>{
+      if(draft.route==='brief')draft.block=event.target.value;else draft.goal=event.target.value;
+      updateDraftStatus();
+    });
+    const routeButtons=[...document.querySelectorAll('[data-route]')];
+    routeButtons.forEach((button,i)=>{
+      button.addEventListener('click',()=>{
+        draft.route=button.dataset.route;
+        if(draft.route==='explore'&&!draft.explore.length)draft.explore=drawExplore(applied.explore);
+        renderDraft();
+      });
+      button.addEventListener('keydown',event=>{
+        const next={ArrowRight:(i+1)%3,ArrowLeft:(i+2)%3,Home:0,End:2}[event.key];
+        if(next!==undefined){event.preventDefault();routeButtons[next].click();routeButtons[next].focus()}
+      });
+    });
+    $('focus-form').addEventListener('submit',event=>{
+      event.preventDefault();if(!recommendations(draft).length)return;
+      applied=copyFocus(draft);applyFilters();closeFocus();
+    });
+    function clearFocus(){applied=emptyFocus();draft=emptyFocus();applyFilters();closeFocus();trigger.focus({preventScroll:true})}
+    $('clear-focus').addEventListener('click',clearFocus);
+    $('reset-focus').addEventListener('click',clearFocus);
+    $('review-focus').addEventListener('click',()=>{if(filtered)open(matches[0],$('review-focus'))});
+    $('reshuffle-focus').addEventListener('click',()=>{applied.explore=drawExplore(applied.explore);applyFilters()});
+    focusDialog.addEventListener('close',()=>{
+      document.body.style.overflow='';trigger.setAttribute('aria-expanded','false');
+      (filtered?filterOpener:trigger).focus({preventScroll:true});
+    });
+    focusDialog.addEventListener('click',event=>{
+      if(event.target!==focusDialog)return;
+      const rect=focusDialog.getBoundingClientRect();
+      if(event.clientX<rect.left||event.clientX>rect.right||event.clientY<rect.top||event.clientY>rect.bottom)closeFocus();
+    });
+    document.addEventListener('click',event=>{if(!$('group-help').contains(event.target))$('group-help').open=false});
+    document.addEventListener('keydown',event=>{if(event.key==='Escape'){hideTooltip();if($('group-help').open){$('group-help').open=false;$('group-help').querySelector('summary').focus()}}});
+
+    function paint(index){
+      currentIndex=(index+entries.length)%entries.length;
+      const e=entries[currentIndex],g=groups[e.column],level=levels[e.row],inMatches=matches.indexOf(currentIndex);
+      dialog.style.setProperty('--tint',g.tint);dialog.style.setProperty('--accent',g.accent);
+      $('element-path').textContent=familyFor(e).name+' / '+g.name+' / '+level.name;
+      $('hero-symbol').innerHTML=escape(e.symbol)+'<sup>'+String(currentIndex+1).padStart(2,'0')+'</sup>';
+      $('element-title').textContent=e.name;
+      $('element-description').textContent=e.description;
+      const why=reasons.get(currentIndex)||[];
+      $('focus-reason').hidden=why.length===0;
+      $('focus-reason').innerHTML=why.length?'<strong>Why this move?</strong>'+why.map(reason=>'<p>'+escape(reason)+'</p>').join(''):'';
+      $('element-position').textContent=filtered&&matches.length?(inMatches<0?'Outside your starting points':`${inMatches+1} / ${matches.length} suggested`):String(currentIndex+1).padStart(2,'0')+' / 60';
+      ['prev-element','next-element'].forEach((id,i)=>{
+        $(id).disabled=filtered&&matches.length===1&&inMatches===0;
+        $(id).setAttribute('aria-label',(i?'Next':'Previous')+(filtered&&matches.length?' highlighted element':' element'));
+      });
+      $('examples').innerHTML=e.examples.map(([domain,title,body])=>`<li class="example ${domain==='Advertising'?'advertising':''}"><div class="domain">${escape(domain)}</div><h4>${escape(title)}</h4><p>${escape(body)}</p></li>`).join('');
+      tiles.forEach((tile,i)=>tile.setAttribute('aria-expanded',String(i===currentIndex)));
+      highlight(currentIndex);
+      document.querySelectorAll('.examples-pane,.dialog-shell,.element-pane').forEach(el=>el.scrollTop=0);
+      $('selection-status').textContent=e.name+'. '+g.name+' at the '+level.name+' layer.';
+      if(!reduced.matches)document.querySelectorAll('.example').forEach((el,i)=>el.animate([{opacity:0,transform:'translateY(6px)'},{opacity:1,transform:'translateY(0)'}],{duration:250,delay:i*24,fill:'backwards',easing:'ease-out'}));
+    }
+    function navigate(direction){
+      if(!filtered||!matches.length){paint(currentIndex+direction);return}
+      const position=matches.indexOf(currentIndex);
+      if(position>=0)paint(matches[(position+direction+matches.length)%matches.length]);
+      else paint(direction>0?(matches.find(i=>i>currentIndex)??matches[0]):(matches.slice().reverse().find(i=>i<currentIndex)??matches[matches.length-1]));
+    }
+    function open(index,opener=tiles[index]){
+      hideTooltip();returnFocus=opener;paint(index);dialog.showModal();
+      document.body.style.overflow='hidden';$('close-dialog').focus({preventScroll:true});
+    }
+    function close(){if(dialog.open)dialog.close()}
+    document.querySelectorAll('.element').forEach((tile,index)=>{
+      tiles.push(tile);
+      tile.addEventListener('click',()=>open(index));
+      tile.addEventListener('mouseenter',()=>{highlight(index);showTooltip(index,tile)});
+      tile.addEventListener('mouseleave',()=>{hideTooltip();if(!dialog.open)highlight(null)});
+      tile.addEventListener('focus',()=>{highlight(index);showTooltip(index,tile)});
+      tile.addEventListener('blur',()=>{hideTooltip();if(!dialog.open)highlight(null)});
+      tile.addEventListener('keydown',event=>{
+        const width=mobile.matches?2:10,height=entries.length/width,r=Math.floor(index/width),c=index%width;
+        const next={ArrowRight:r*width+(c+1)%width,ArrowLeft:r*width+(c+width-1)%width,ArrowDown:((r+1)%height)*width+c,ArrowUp:((r+height-1)%height)*width+c,Home:r*width,End:r*width+width-1}[event.key];
+        if(next!==undefined){event.preventDefault();tiles[next].focus()}
+      });
+    });
+    window.addEventListener('scroll',hideTooltip,true);window.addEventListener('resize',hideTooltip);
+    $('close-dialog').addEventListener('click',close);
+    $('prev-element').addEventListener('click',()=>navigate(-1));
+    $('next-element').addEventListener('click',()=>navigate(1));
+    dialog.addEventListener('close',()=>{
+      document.body.style.overflow='';tiles.forEach(tile=>tile.setAttribute('aria-expanded','false'));highlight(null);
+      if(returnFocus)returnFocus.focus({preventScroll:true});
+      hideTooltip();
+    });
+    dialog.addEventListener('click',event=>{
+      if(event.target!==dialog)return;
+      const rect=dialog.getBoundingClientRect();
+      if(event.clientX<rect.left||event.clientX>rect.right||event.clientY<rect.top||event.clientY>rect.bottom)close();
+    });
+    dialog.addEventListener('keydown',event=>{
+      if(event.key==='ArrowRight'||event.key==='ArrowLeft'){event.preventDefault();navigate(event.key==='ArrowRight'?1:-1)}
+    });
+    applyFilters();
+  })();
+  </script>
+</body>
+</html>
